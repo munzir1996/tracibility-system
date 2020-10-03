@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Organization;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Spatie\Permission\Models\Permission;
 
 class UserController extends Controller
 {
@@ -15,7 +17,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+
+        return view('users.index', [
+            'users' => $users,
+        ]);
     }
 
     /**
@@ -25,7 +31,16 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $permissions = Permission::all()->whereNotIn('name', array(
+            'super-admin',
+            'shipping',
+            'transporting',
+            ))->pluck('name');
+
+        return view('users.create', [
+            'permissions' => $permissions,
+        ]);
+
     }
 
     /**
@@ -36,7 +51,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        // dd(uniqid());
 
         $request->validate([
             'name' => 'required',
@@ -57,12 +71,9 @@ class UserController extends Controller
 
         $user->syncPermissions($request->permission);
 
-        // session()->flash('toast', [
-        //     'type' => 'success',
-        //     'message' => 'تم أضافة المستخدم'
-        // ]);
+        session()->flash('success', 'تم الأضافة بنجاح');
 
-        // return redirect()->route('users.index');
+        return redirect()->route('users.index');
 
     }
 
@@ -85,7 +96,21 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        $permissions = Permission::all()->whereNotIn('name', array(
+            'super-admin',
+            'shipping',
+            'transporting',
+            ))->pluck('name');
+
+        $organizations = Organization::where('type', $user->organization->type)->get();
+
+        $user['permission'] = $user->permission;
+
+        return view('users.edit', [
+            'permissions' => $permissions,
+            'user' => $user,
+            'organizations' => $organizations,
+        ]);
     }
 
     /**
@@ -97,6 +122,7 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+
         $request->validate([
             'name' => 'required',
             'national_id' => 'required',
@@ -106,13 +132,26 @@ class UserController extends Controller
             'organization_id' => 'required_unless:permission,super-admin',
         ]);
 
-        $user->update([
-            'name' => $request->name,
-            'national_id' => $request->national_id,
-            'phone' => $request->phone,
-            'password' => bcrypt($request->password),
-            'organization_id' => $request->organization_id,
-        ]);
+        $user->name = $request->name;
+        $user->national_id = $request->national_id;
+        $user->phone = $request->phone;
+        $user->organization_id = $request->organization_id;
+        if ($request->password != null) {
+            $user->password = bcrypt($request->password);
+        }
+        $user->save();
+
+        session()->flash('success', 'تم التعديل بنجاح');
+
+        return redirect()->route('users.index');
+
+        // $user->update([
+        //     'name' => $request->name,
+        //     'national_id' => $request->national_id,
+        //     'phone' => $request->phone,
+        //     'password' => bcrypt($request->password),
+        //     'organization_id' => $request->organization_id,
+        // ]);
 
     }
 
@@ -125,5 +164,9 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
+
+        session()->flash('success', 'تم الحذف بنجاح');
+
+        return redirect()->route('users.index');
     }
 }

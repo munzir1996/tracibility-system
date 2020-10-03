@@ -11,6 +11,13 @@ class User extends Authenticatable
 {
     use Notifiable, HasRoles;
 
+    protected $with = ['organization'];
+
+    public function getPermissionAttribute()
+    {
+        return $this->permissions->pluck('name')->first();
+    }
+
     public function organization()
     {
         return $this->belongsTo(Organization::class);

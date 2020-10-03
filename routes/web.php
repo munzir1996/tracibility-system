@@ -18,8 +18,10 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/get/organizations/{permission}', 'OrganizationController@getOrganization')->name('organization.get');
 
 Route::resource('/users', 'UserController');
 Route::resource('/organizations', 'OrganizationController');
+
 
 // Route::get('/home', 'HomeController@index')->name('home');

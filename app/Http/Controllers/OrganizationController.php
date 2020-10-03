@@ -28,7 +28,7 @@ class OrganizationController extends Controller
      */
     public function create()
     {
-        //
+        return view('organizations.create');
     }
 
     /**
@@ -49,6 +49,10 @@ class OrganizationController extends Controller
             'name' => $request->name,
             'type' => $request->type,
         ]);
+
+        session()->flash('success', 'تم الأضافة بنجاح');
+
+        return redirect()->route('organizations.index');
 
     }
 
@@ -71,7 +75,9 @@ class OrganizationController extends Controller
      */
     public function edit(Organization $organization)
     {
-        //
+        return view('organizations.edit', [
+            'organization' => $organization,
+        ]);
     }
 
     /**
@@ -93,6 +99,9 @@ class OrganizationController extends Controller
             'type' => $request->type,
         ]);
 
+        session()->flash('success', 'تم التعديل بنجاح');
+
+        return redirect()->route('organizations.index');
 
     }
 
@@ -105,5 +114,21 @@ class OrganizationController extends Controller
     public function destroy(Organization $organization)
     {
         $organization->delete();
+
+        session()->flash('success', 'تم الحذف بنجاح');
+
+        return redirect()->route('organizations.index');
     }
+
+    public function getOrganization($permission){
+
+        $organizations = Organization::permissionType($permission)->get();
+
+        return $organizations;
+
+    }
+
 }
+
+
+

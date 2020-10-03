@@ -21,6 +21,9 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('flash', require('./components/Flash.vue').default);
+Vue.component('users-create', require('./components/users/CreateComponent.vue').default);
+Vue.component('users-edit', require('./components/users/EditComponent.vue').default);
+Vue.component('sidebar-component', require('./components/SidebarComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -35,6 +38,7 @@ const app = new Vue({
         sidebarOpen: false,
         notificationOpen: false,
         dropdownOpen: false,
+        categoryIsOpen: false,
     },
 
     beforeCreate(){
@@ -55,6 +59,10 @@ const app = new Vue({
 
         dropdownOpenMethod(){
             this.dropdownOpen = !this.dropdownOpen;
+        },
+
+        categoryToggle(){
+            this.categoryIsOpen = !this.categoryIsOpen
         }
 
     },
