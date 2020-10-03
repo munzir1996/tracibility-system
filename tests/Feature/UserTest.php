@@ -10,18 +10,9 @@ use Tests\TestCase;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Config;
-
 class UserTest extends TestCase
 {
     use RefreshDatabase;
-
-    // protected function createRole($user){
-
-    //     $role = factory(Role::class)->create();
-
-    //     return $role;
-
-    // }
 
     protected function createPermission(){
 
