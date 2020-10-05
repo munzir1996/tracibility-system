@@ -23,8 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // use Keygen;
-        // $id = Keygen::numeric(10)->generate();
         // $id = Keygen::numeric(12)->prefix('TM-')->generate(true);
         // dd($id);
 

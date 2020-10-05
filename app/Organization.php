@@ -31,4 +31,9 @@ class Organization extends Model
         return $this->hasMany(User::class);
     }
 
+    public function cteHarvests()
+    {
+        return $this->hasMany(CteHarvest::class);
+    }
+
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Organization;
 use Illuminate\Http\Request;
+use Keygen;
 
 class OrganizationController extends Controller
 {
@@ -45,7 +46,7 @@ class OrganizationController extends Controller
         ]);
 
         Organization::create([
-            'gln' => uniqid(),
+            'gln' => Keygen::numeric(10)->generate(),
             'name' => $request->name,
             'type' => $request->type,
         ]);
