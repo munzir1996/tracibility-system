@@ -18,7 +18,11 @@ class CteHarvestController extends Controller
      */
     public function index()
     {
-        //
+        $cteHarvests = CteHarvest::all();
+
+        return view('ctes.harvests.index', [
+            'cteharvests' => $cteHarvests,
+        ]);
     }
 
     /**
