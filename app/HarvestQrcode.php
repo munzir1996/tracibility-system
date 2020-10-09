@@ -8,11 +8,17 @@ class HarvestQrcode extends Model
 {
 
     protected $guarded = [];
+    // protected $with = ['cteHarvest'];
 
-    public function cteHarvests()
+    public function cteHarvest()
     {
-        return $this->hasMany(CteHarvest::class);
+        return $this->hasOne(CteHarvest::class);
     }
+
+    // public function cteHarvests()
+    // {
+    //     return $this->hasMany(CteHarvest::class);
+    // }
 
 }
 

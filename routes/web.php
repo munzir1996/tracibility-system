@@ -17,14 +17,25 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
 
-Route::resource('/users', 'UserController');
+Route::prefix('/')->middleware('auth')->group(function () {
 
-Route::get('/get/organizations/{permission}', 'OrganizationController@getOrganization')->name('organization.get');
-Route::resource('/organizations', 'OrganizationController');
+    Route::get('/', 'HomeController@index')->name('home');
 
-Route::resource('/cteharvests', 'CteHarvestController');
+    Route::resource('/users', 'UserController');
+
+    Route::get('get/organizations/{permission}', 'OrganizationController@getOrganization')->name('organization.get');
+    Route::resource('organizations', 'OrganizationController');
+
+    Route::resource('cteharvests', 'CteHarvestController');
+    Route::get('harvest/qrcode/{code}', 'HarvestQrcodeController@show')->name('harvest.qrcodes.show');
+
+    Route::resource('agents', 'AgentController');
+
+});
+
 
 
 // Route::get('/home', 'HomeController@index')->name('home');
+
+

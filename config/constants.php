@@ -14,6 +14,13 @@ return [
         'agent' => 'الوكيل',
         'bakery' => 'المخبز',
         'transport' => 'النقل',
+        'admin' => 'أدمن',
+    ],
+
+    'delivery' => [
+        'pending' => 'قيد الأنتظار',
+        'received' => 'تم الأستلام',
+        'rejected' => 'مرفوض',
     ],
 
 ];

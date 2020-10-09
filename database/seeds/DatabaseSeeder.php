@@ -1,8 +1,10 @@
 <?php
 
+use App\Organization;
 use App\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Config;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,6 +18,11 @@ class DatabaseSeeder extends Seeder
         // $this->call(UserSeeder::class);
 
         $this->call(RolesAndPermissionsSeeder::class);
+        factory(Organization::class)->states('harvest')->create();
+        factory(Organization::class)->states('agent')->create();
+        factory(Organization::class)->states('bakery')->create();
+
+        $adminOrganization = factory(Organization::class)->states('agent')->create();
 
         $user = User::create([
             'name' => 'Super-Admin',
@@ -23,9 +30,10 @@ class DatabaseSeeder extends Seeder
             'phone' => '0114949901',
             'email_verified_at' => now(),
             'password' => Hash::make('password'), // password
+            'organization_id' => $adminOrganization->id,
         ]);
 
-        $user->assignRole('super-admin');
+        $user->givePermissionTo('super-admin');
 
     }
 }

@@ -20,13 +20,6 @@ class OrganizationTest extends TestCase
         $this->withoutExceptionHandling();
         $this->loginUser();
 
-        $x = [
-            'x' => 1,
-            'y' => 2,
-        ];
-
-        dd($x);
-
         $response = $this->post('/organizations', [
             'name' => 'Local',
             'type' => Config::get('constants.type.harvest'),

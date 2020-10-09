@@ -7,7 +7,7 @@ use App\HarvestQrcode;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
-use Keygen;
+use Keygen\Keygen;
 
 class CteHarvestController extends Controller
 {
@@ -32,7 +32,7 @@ class CteHarvestController extends Controller
      */
     public function create()
     {
-        //
+        return view('ctes.harvests.create');
     }
 
     /**
@@ -58,7 +58,7 @@ class CteHarvestController extends Controller
             'quantity' => $request->quantity,
         ];
 
-        $x = CteHarvest::create([
+        CteHarvest::create([
             'what' => $what,
             'when' => Carbon::now(),
             'why' => Config::get('constants.status.harvesting'),
@@ -66,6 +66,10 @@ class CteHarvestController extends Controller
             'organization_id' => auth()->user()->organization_id,
             'harvest_qrcode_id' => $harvestQrcode->id,
         ]);
+
+        session()->flash('success', 'تم الأضافة بنجاح');
+
+        return redirect()->route('cteharvests.index');
 
     }
 
@@ -130,5 +134,10 @@ class CteHarvestController extends Controller
     public function destroy(CteHarvest $cteharvest)
     {
         $cteharvest->delete();
+
+        session()->flash('success', 'تم الحذف بنجاح');
+
+        return redirect()->route('cteharvests.index');
+
     }
 }

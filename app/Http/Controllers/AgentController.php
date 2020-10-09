@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\HarvestQrcode;
+use App\Agent;
 use Illuminate\Http\Request;
 
-class HarvestQrcodeController extends Controller
+class AgentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,27 +41,21 @@ class HarvestQrcodeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\HarvestQrcode  $harvestQrcode
+     * @param  \App\Agent  $agent
      * @return \Illuminate\Http\Response
      */
-    public function show($code)
+    public function show(Agent $agent)
     {
-
-        $harvestQrcode = HarvestQrcode::with('cteHarvest')->where('code', $code)->first();
-
-        return view('ctes.harvests.qrcode', [
-            'qrcode' => $harvestQrcode,
-        ]);
-
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\HarvestQrcode  $harvestQrcode
+     * @param  \App\Agent  $agent
      * @return \Illuminate\Http\Response
      */
-    public function edit(HarvestQrcode $harvestQrcode)
+    public function edit(Agent $agent)
     {
         //
     }
@@ -70,10 +64,10 @@ class HarvestQrcodeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\HarvestQrcode  $harvestQrcode
+     * @param  \App\Agent  $agent
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, HarvestQrcode $harvestQrcode)
+    public function update(Request $request, Agent $agent)
     {
         //
     }
@@ -81,10 +75,10 @@ class HarvestQrcodeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\HarvestQrcode  $harvestQrcode
+     * @param  \App\Agent  $agent
      * @return \Illuminate\Http\Response
      */
-    public function destroy(HarvestQrcode $harvestQrcode)
+    public function destroy(Agent $agent)
     {
         //
     }

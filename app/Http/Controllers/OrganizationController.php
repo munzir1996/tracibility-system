@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Organization;
 use Illuminate\Http\Request;
-use Keygen;
+use Keygen\Keygen;
 
 class OrganizationController extends Controller
 {
