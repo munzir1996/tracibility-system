@@ -3,16 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
-class CteHarvest extends Model
-{
 
+class CteAgent extends Model
+{
     protected $guarded = [];
-    protected $with = ['harvestQrcode', 'user', 'organization'];
+    protected $with = ['manafactureQrcode', 'user', 'organization'];
 
     protected $casts = [
-        'what' => 'array'
+        'what' => 'array',
    ];
 
     public function getWhatAttribute($value)
@@ -27,13 +26,12 @@ class CteHarvest extends Model
 
     public function getQrcodeAttribute()
     {
-        return QrCode::generate(route('harvest.qrcodes.show', $this->harvestQrcode->code));
-
+        return QrCode::generate(route('harvest.qrcodes.show', $this->manafactureQrcode->code));
     }
 
-    public function cteAgent()
+    public function cteHarvest()
     {
-        return $this->hasOne(CteAgent::class);
+        return $this->belongsTo(CteHarvest::class);
     }
 
     public function user()
@@ -46,11 +44,8 @@ class CteHarvest extends Model
         return $this->belongsTo(Organization::class);
     }
 
-    public function harvestQrcode()
+    public function manafactureQrcode()
     {
-        return $this->belongsTo(HarvestQrcode::class);
+        return $this->belongsTo(ManafactureQrcode::class);
     }
-
 }
-
-

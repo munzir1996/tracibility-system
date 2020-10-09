@@ -18,10 +18,7 @@ class CteHarvestTest extends TestCase
     {
 
         $organization = factory(Organization::class)->states('harvest')->create();
-
-        $user = factory(User::class)->create([
-            'organization_id' => $organization->id,
-        ]);
+        $user = factory(User::class)->states('harvest')->create();
 
         $this->withoutExceptionHandling();
         $this->loginUser($user);

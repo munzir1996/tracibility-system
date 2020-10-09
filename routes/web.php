@@ -30,7 +30,7 @@ Route::prefix('/')->middleware('auth')->group(function () {
     Route::resource('cteharvests', 'CteHarvestController');
     Route::get('harvest/qrcode/{code}', 'HarvestQrcodeController@show')->name('harvest.qrcodes.show');
 
-    Route::resource('agents', 'AgentController');
+    Route::resource('cteagents', 'CteAgentController');
 
 });
 

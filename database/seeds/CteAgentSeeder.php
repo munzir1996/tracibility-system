@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class AgentSeeder extends Seeder
+class CteAgentSeeder extends Seeder
 {
     /**
      * Run the database seeds.

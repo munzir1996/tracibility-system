@@ -21,6 +21,12 @@ return [
         'pending' => 'قيد الأنتظار',
         'received' => 'تم الأستلام',
         'rejected' => 'مرفوض',
+        'transporting' => 'التوصيل',
+    ],
+
+    'stock' => [
+        'available' => 'متوفر',
+        'not available' => 'غير متوفر',
     ],
 
 ];

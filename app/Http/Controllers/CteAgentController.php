@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\CteHarvest;
+use App\CteAgent;
 use App\HarvestQrcode;
+use App\ManafactureQrcode;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Keygen\Keygen;
 
-class CteHarvestController extends Controller
+class CteAgentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,11 +19,7 @@ class CteHarvestController extends Controller
      */
     public function index()
     {
-        $cteHarvests = CteHarvest::all();
-
-        return view('ctes.harvests.index', [
-            'cteharvests' => $cteHarvests,
-        ]);
+        //
     }
 
     /**
@@ -32,7 +29,7 @@ class CteHarvestController extends Controller
      */
     public function create()
     {
-        return view('ctes.harvests.create');
+        //
     }
 
     /**
@@ -43,43 +40,47 @@ class CteHarvestController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'quantity' => 'required',
+            'cte_harvest_id' => 'required',
         ]);
 
-        $harvestQrcode = HarvestQrcode::create([
+        $manafactureQrcode = ManafactureQrcode::create([
             'code' => uniqid(),
-            'status' => Config::get('constants.delivery.harvesting'),
+            'status' => Config::get('constants.status.manafacturing'),
         ]);
+
 
         $what = [
             'gtin' => Keygen::numeric(14)->generate(),
-            'batch' => Keygen::numeric(3)->prefix('F-')->generate(true),
+            'batch' => Keygen::numeric(3)->prefix('S-')->generate(true),
             'quantity' => $request->quantity,
         ];
 
-        CteHarvest::create([
+        CteAgent::create([
             'what' => $what,
             'when' => Carbon::now(),
-            'why' => Config::get('constants.status.harvesting'),
+            'why' => Config::get('constants.status.manafacturing'),
+            'cte_harvest_id' => $request->cte_harvest_id,
             'user_id' => auth()->id(),
             'organization_id' => auth()->user()->organization_id,
-            'harvest_qrcode_id' => $harvestQrcode->id,
+            'manafacture_qrcode_id' => $manafactureQrcode->id,
         ]);
 
         session()->flash('success', 'تم الأضافة بنجاح');
 
-        return redirect()->route('cteharvests.index');
+        return redirect()->route('cteagents.index');
 
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\CteHarvest  $cteharvest
+     * @param  \App\CteAgent  $cteAgent
      * @return \Illuminate\Http\Response
      */
-    public function show(CteHarvest $cteharvest)
+    public function show(CteAgent $cteagent)
     {
         //
     }
@@ -87,10 +88,10 @@ class CteHarvestController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\CteHarvest  $cteharvest
+     * @param  \App\CteAgent  $cteAgent
      * @return \Illuminate\Http\Response
      */
-    public function edit(CteHarvest $cteharvest)
+    public function edit(CteAgent $cteagent)
     {
         //
     }
@@ -99,45 +100,42 @@ class CteHarvestController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\CteHarvest  $cteharvest
+     * @param  \App\CteAgent  $cteAgent
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CteHarvest $cteharvest)
+    public function update(Request $request, CteAgent $cteagent)
     {
-
         $request->validate([
             'quantity' => 'required',
         ]);
 
         $what = [
-            'gtin' => $cteharvest->what->gtin,
-            'batch' => $cteharvest->what->batch,
+            'gtin' => $cteagent->what->gtin,
+            'batch' => $cteagent->what->batch,
             'quantity' => $request->quantity,
         ];
 
-        $cteharvest->update([
+        $cteagent->update([
             'what' => $what,
             'when' => Carbon::now(),
-            'why' => Config::get('constants.status.harvesting'),
+            'why' => Config::get('constants.status.manafacturing'),
             'user_id' => auth()->id(),
             'organization_id' => auth()->user()->organization_id,
         ]);
-
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\CteHarvest  $cteharvest
+     * @param  \App\CteAgent  $cteAgent
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CteHarvest $cteharvest)
+    public function destroy(CteAgent $cteagent)
     {
-        $cteharvest->delete();
+        $cteagent->delete();
 
         session()->flash('success', 'تم الحذف بنجاح');
 
-        return redirect()->route('cteharvests.index');
-
+        return redirect()->route('cteagents.index');
     }
 }

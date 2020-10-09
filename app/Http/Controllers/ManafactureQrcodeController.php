@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Agent;
+use App\ManafactureQrcode;
 use Illuminate\Http\Request;
 
-class AgentController extends Controller
+class ManafactureQrcodeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class AgentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Agent  $agent
+     * @param  \App\ManafactureQrcode  $manafactureQrcode
      * @return \Illuminate\Http\Response
      */
-    public function show(Agent $agent)
+    public function show(ManafactureQrcode $manafactureQrcode)
     {
         //
     }
@@ -52,10 +52,10 @@ class AgentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Agent  $agent
+     * @param  \App\ManafactureQrcode  $manafactureQrcode
      * @return \Illuminate\Http\Response
      */
-    public function edit(Agent $agent)
+    public function edit(ManafactureQrcode $manafactureQrcode)
     {
         //
     }
@@ -64,10 +64,10 @@ class AgentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Agent  $agent
+     * @param  \App\ManafactureQrcode  $manafactureQrcode
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Agent $agent)
+    public function update(Request $request, ManafactureQrcode $manafactureQrcode)
     {
         //
     }
@@ -75,10 +75,10 @@ class AgentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Agent  $agent
+     * @param  \App\ManafactureQrcode  $manafactureQrcode
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Agent $agent)
+    public function destroy(ManafactureQrcode $manafactureQrcode)
     {
         //
     }
