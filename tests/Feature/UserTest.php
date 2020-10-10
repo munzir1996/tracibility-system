@@ -85,6 +85,9 @@ class UserTest extends TestCase
     /** @test */
     public function can_delete_a_user(){
 
+        $this->withoutExceptionHandling();
+        $this->loginUser();
+
         $user = factory(User::class)->create();
 
         $this->delete('users/'. $user->id);

@@ -26,7 +26,7 @@ return [
 
     'stock' => [
         'available' => 'متوفر',
-        'not available' => 'غير متوفر',
+        'not_available' => 'غير متوفر',
     ],
 
 ];

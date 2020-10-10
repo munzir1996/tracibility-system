@@ -49,7 +49,7 @@ class CteHarvestController extends Controller
 
         $harvestQrcode = HarvestQrcode::create([
             'code' => uniqid(),
-            'status' => Config::get('constants.delivery.harvesting'),
+            'status' => Config::get('constants.delivery.pending'),
         ]);
 
         $what = [
@@ -118,7 +118,6 @@ class CteHarvestController extends Controller
         $cteharvest->update([
             'what' => $what,
             'when' => Carbon::now(),
-            'why' => Config::get('constants.status.harvesting'),
             'user_id' => auth()->id(),
             'organization_id' => auth()->user()->organization_id,
         ]);
