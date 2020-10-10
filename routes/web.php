@@ -29,8 +29,13 @@ Route::prefix('/')->middleware('auth')->group(function () {
 
     Route::resource('cteharvests', 'CteHarvestController');
     Route::get('harvest/qrcode/{code}', 'HarvestQrcodeController@show')->name('harvest.qrcodes.show');
+    Route::get('harvest/qrcode/reject/{harvestQrcode}', 'HarvestQrcodeController@reject')->name('harvest.qrcodes.reject');
+    Route::put('harvest/qrcode/accept/{harvestQrcode}', 'HarvestQrcodeController@accept')->name('harvest.qrcodes.accept');
 
     Route::resource('cteagents', 'CteAgentController');
+    Route::get('manafacture/qrcode/{code}', 'ManafactureQrcodeController@show')->name('manafacture.qrcodes.show');
+
+    Route::resource('imports', 'ImportController');
 
 });
 

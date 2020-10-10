@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use Illuminate\Support\Facades\Config;
 
 class CteAgentTest extends TestCase
 {
@@ -32,6 +33,10 @@ class CteAgentTest extends TestCase
             'user_id' => $user->id,
             'organization_id' => $user->organization->id,
             'cte_harvest_id' => $cteHarvest->id,
+        ]);
+
+        $this->assertDatabaseHas('harvest_qrcodes', [
+            'status' => Config::get('constants.delivery.received'),
         ]);
 
     }

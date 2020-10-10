@@ -3,40 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\HarvestQrcode;
+use App\Import;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 
 class HarvestQrcodeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -55,37 +28,44 @@ class HarvestQrcodeController extends Controller
 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\HarvestQrcode  $harvestQrcode
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(HarvestQrcode $harvestQrcode)
+    public function accept(Request $request, HarvestQrcode $harvestQrcode)
     {
-        //
+
+        $request->validate([
+            'cte_harvest_id' => 'required',
+            'amount' => 'required',
+        ]);
+
+        Import::create([
+            'amount' => $request->amount,
+            'when' => Carbon::now(),
+            'cte_harvest_id' => $request->cte_harvest_id,
+            'user_id' => auth()->id(),
+            'organization_id' => auth()->user()->organization_id,
+        ]);
+
+        $harvestQrcode->update([
+            'status' => Config::get('constants.delivery.received'),
+        ]);
+
+        session()->flash('success', 'تم القبول بنجاح');
+
+        return redirect()->route('harvest.qrcodes.show', $harvestQrcode->code);
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\HarvestQrcode  $harvestQrcode
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, HarvestQrcode $harvestQrcode)
+    public function reject(HarvestQrcode $harvestQrcode)
     {
-        //
+
+        $harvestQrcode->update([
+            'status' => Config::get('constants.delivery.rejected'),
+        ]);
+
+        session()->flash('success', 'تم الرفض بنجاح');
+
+        return redirect()->route('harvest.qrcodes.show', $harvestQrcode->code);
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\HarvestQrcode  $harvestQrcode
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(HarvestQrcode $harvestQrcode)
-    {
-        //
-    }
 }
+

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\ManafactureQrcode;
+use App\CteShipping;
 use Illuminate\Http\Request;
 
-class ManafactureQrcodeController extends Controller
+class CteShippingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,33 +35,37 @@ class ManafactureQrcodeController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\ManafactureQrcode  $manafactureQrcode
-     * @return \Illuminate\Http\Response
-     */
-    public function show($code)
-    {
+        $request->validate([
+            'amount' => 'required',
+        ]);
 
-        $manafactureQrcode = ManafactureQrcode::with(['cteAgent', 'cteAgent.cteHarvest'])->where('code', $code)->first();
+        dd($request->all());
 
-        return view('ctes.agents.qrcode', [
-            'qrcode' => $manafactureQrcode,
+        CteShipping::create([
+
         ]);
 
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Display the specified resource.
      *
-     * @param  \App\ManafactureQrcode  $manafactureQrcode
+     * @param  \App\CteShipping  $cteShipping
      * @return \Illuminate\Http\Response
      */
-    public function edit(ManafactureQrcode $manafactureQrcode)
+    public function show(CteShipping $cteShipping)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\CteShipping  $cteShipping
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(CteShipping $cteShipping)
     {
         //
     }
@@ -70,10 +74,10 @@ class ManafactureQrcodeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ManafactureQrcode  $manafactureQrcode
+     * @param  \App\CteShipping  $cteShipping
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ManafactureQrcode $manafactureQrcode)
+    public function update(Request $request, CteShipping $cteShipping)
     {
         //
     }
@@ -81,10 +85,10 @@ class ManafactureQrcodeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ManafactureQrcode  $manafactureQrcode
+     * @param  \App\CteShipping  $cteShipping
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ManafactureQrcode $manafactureQrcode)
+    public function destroy(CteShipping $cteShipping)
     {
         //
     }

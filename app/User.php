@@ -28,6 +28,21 @@ class User extends Authenticatable
         return $this->hasMany(CteHarvest::class);
     }
 
+    public function cteAgents()
+    {
+        return $this->hasMany(CteAgent::class);
+    }
+
+    public function cteShippings()
+    {
+        return $this->hasMany(CteShipping::class);
+    }
+
+    public function import()
+    {
+        return $this->hasMany(Import::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *

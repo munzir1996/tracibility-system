@@ -12,8 +12,6 @@ class OrganizationTest extends TestCase
 {
     use RefreshDatabase;
 
-    // $concert = factory(Concert::class)->states('published')->create();
-
     /** @test */
     public function can_create_an_organization()
     {

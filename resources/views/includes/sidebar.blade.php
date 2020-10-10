@@ -58,17 +58,17 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
             </svg>
 
-            <span class="mx-3">الوكيل</span>
+            <span class="mx-3">forms</span>
         </a>
 
-        <a @click="categoryToggle" class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 text-decoration-none hover:text-gray-100">
+        <a @click="agentToggle" class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 text-decoration-none hover:text-gray-100">
             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
             </svg>
 
-            <span class="mx-3">Forms</span>
+            <span class="mx-3">الوكيل</span>
             {{-- Arrow --}}
-            <svg v-if="!categoryIsOpen" class="fill-current w-3 text-gray-500" version="1.1" id="Layer_1"
+            <svg v-if="!agentIsOpen" class="fill-current w-3 text-gray-500" version="1.1" id="Layer_1"
                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
                 y="0px" viewBox="0 0 491.996 491.996" style="enable-background:new 0 0 491.996 491.996;"
                 xml:space="preserve">
@@ -85,12 +85,16 @@
             {{-- Arrow --}}
         </a>
         {{-- Sub --}}
-        <a v-if="categoryIsOpen" href="#" class="flex items-center py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 text-decoration-none hover:text-gray-100">
-            <span class="mx-3">الرئيسية</span>
+        <a v-if="agentIsOpen" href="{{route('imports.index')}}" class="flex items-center py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 text-decoration-none hover:text-gray-100">
+            <span class="mx-3">الوارد</span>
             {{-- <span class="mx-2 text-gray-300"></span> --}}
         </a>
-        <a v-if="categoryIsOpen" href="#" class="flex items-center py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 text-decoration-none hover:text-gray-100">
-            <span class="mx-3">الفرعية</span>
+        <a v-if="agentIsOpen" href="{{route('cteagents.index')}}" class="flex items-center py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 text-decoration-none hover:text-gray-100">
+            <span class="mx-3">الأنتاج</span>
+            {{-- <span class="mx-2 text-gray-300"></span> --}}
+        </a>
+        <a v-if="agentIsOpen" href="#" class="flex items-center py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 text-decoration-none hover:text-gray-100">
+            <span class="mx-3">العمليات</span>
             {{-- <span class="mx-2 text-gray-300"></span> --}}
         </a>
         {{-- Sub --}}

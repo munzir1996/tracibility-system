@@ -51447,7 +51447,7 @@ var app = new Vue({
     sidebarOpen: false,
     notificationOpen: false,
     dropdownOpen: false,
-    categoryIsOpen: false
+    agentIsOpen: false
   },
   beforeCreate: function beforeCreate() {
     this.sidebarOpen = false;
@@ -51464,8 +51464,8 @@ var app = new Vue({
     dropdownOpenMethod: function dropdownOpenMethod() {
       this.dropdownOpen = !this.dropdownOpen;
     },
-    categoryToggle: function categoryToggle() {
-      this.categoryIsOpen = !this.categoryIsOpen;
+    agentToggle: function agentToggle() {
+      this.agentIsOpen = !this.agentIsOpen;
     }
   }
 });

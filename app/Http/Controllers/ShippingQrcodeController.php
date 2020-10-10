@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\ManafactureQrcode;
+use App\ShippingQrcode;
 use Illuminate\Http\Request;
 
-class ManafactureQrcodeController extends Controller
+class ShippingQrcodeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,27 +41,21 @@ class ManafactureQrcodeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\ManafactureQrcode  $manafactureQrcode
+     * @param  \App\ShippingQrcode  $shippingQrcode
      * @return \Illuminate\Http\Response
      */
-    public function show($code)
+    public function show(ShippingQrcode $shippingQrcode)
     {
-
-        $manafactureQrcode = ManafactureQrcode::with(['cteAgent', 'cteAgent.cteHarvest'])->where('code', $code)->first();
-
-        return view('ctes.agents.qrcode', [
-            'qrcode' => $manafactureQrcode,
-        ]);
-
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\ManafactureQrcode  $manafactureQrcode
+     * @param  \App\ShippingQrcode  $shippingQrcode
      * @return \Illuminate\Http\Response
      */
-    public function edit(ManafactureQrcode $manafactureQrcode)
+    public function edit(ShippingQrcode $shippingQrcode)
     {
         //
     }
@@ -70,10 +64,10 @@ class ManafactureQrcodeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ManafactureQrcode  $manafactureQrcode
+     * @param  \App\ShippingQrcode  $shippingQrcode
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ManafactureQrcode $manafactureQrcode)
+    public function update(Request $request, ShippingQrcode $shippingQrcode)
     {
         //
     }
@@ -81,10 +75,10 @@ class ManafactureQrcodeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ManafactureQrcode  $manafactureQrcode
+     * @param  \App\ShippingQrcode  $shippingQrcode
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ManafactureQrcode $manafactureQrcode)
+    public function destroy(ShippingQrcode $shippingQrcode)
     {
         //
     }

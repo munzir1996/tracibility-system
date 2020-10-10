@@ -38,7 +38,7 @@ const app = new Vue({
         sidebarOpen: false,
         notificationOpen: false,
         dropdownOpen: false,
-        categoryIsOpen: false,
+        agentIsOpen: false,
     },
 
     beforeCreate(){
@@ -61,8 +61,8 @@ const app = new Vue({
             this.dropdownOpen = !this.dropdownOpen;
         },
 
-        categoryToggle(){
-            this.categoryIsOpen = !this.categoryIsOpen
+        agentToggle(){
+            this.agentIsOpen = !this.agentIsOpen
         }
 
     },

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CteAgent;
+use App\CteHarvest;
 use App\HarvestQrcode;
 use App\ManafactureQrcode;
 use Carbon\Carbon;
@@ -19,7 +20,12 @@ class CteAgentController extends Controller
      */
     public function index()
     {
-        //
+        $cteAgents = CteAgent::all();
+
+        return view('ctes.agents.index', [
+            'cteagents' => $cteAgents,
+        ]);
+
     }
 
     /**
@@ -46,11 +52,12 @@ class CteAgentController extends Controller
             'cte_harvest_id' => 'required',
         ]);
 
+        $cteHarvest = CteHarvest::findOrFail($request->cte_harvest_id);
+
         $manafactureQrcode = ManafactureQrcode::create([
             'code' => uniqid(),
             'status' => Config::get('constants.status.manafacturing'),
         ]);
-
 
         $what = [
             'gtin' => Keygen::numeric(14)->generate(),
@@ -66,6 +73,10 @@ class CteAgentController extends Controller
             'user_id' => auth()->id(),
             'organization_id' => auth()->user()->organization_id,
             'manafacture_qrcode_id' => $manafactureQrcode->id,
+        ]);
+
+        $cteHarvest->harvestQrcode->update([
+            'status' => Config::get('constants.delivery.received'),
         ]);
 
         session()->flash('success', 'تم الأضافة بنجاح');

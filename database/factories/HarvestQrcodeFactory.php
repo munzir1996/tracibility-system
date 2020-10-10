@@ -9,6 +9,6 @@ use Illuminate\Support\Facades\Config;
 $factory->define(HarvestQrcode::class, function (Faker $faker) {
     return [
         'code' => uniqid(),
-        'status' => Config::get('constants.status.harvesting'),
+        'status' => Config::get('constants.delivery.pending'),
     ];
 });

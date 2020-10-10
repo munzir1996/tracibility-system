@@ -5,10 +5,10 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
-class CteAgent extends Model
+class CteShipping extends Model
 {
     protected $guarded = [];
-    protected $with = ['manafactureQrcode', 'user', 'organization'];
+    protected $with = ['shippingQrcode', 'user', 'organization'];
 
     protected $casts = [
         'what' => 'array',
@@ -26,12 +26,12 @@ class CteAgent extends Model
 
     public function getQrcodeAttribute()
     {
-        return QrCode::generate(route('manafacture.qrcodes.show', $this->manafactureQrcode->code));
+        return QrCode::generate(route('shipping.qrcodes.show', $this->shippingQrcode->code));
     }
 
-    public function cteHarvest()
+    public function cteAgent()
     {
-        return $this->belongsTo(CteHarvest::class);
+        return $this->belongsTo(CteAgent::class);
     }
 
     public function user()
@@ -44,8 +44,11 @@ class CteAgent extends Model
         return $this->belongsTo(Organization::class);
     }
 
-    public function manafactureQrcode()
+    public function shippingQrcode()
     {
-        return $this->belongsTo(ManafactureQrcode::class);
+        return $this->belongsTo(ShippingQrcode::class);
     }
+
 }
+
+
