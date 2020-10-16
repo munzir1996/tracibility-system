@@ -70,8 +70,6 @@
                         <div class="flex justify-start mt-4">
                             <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-500 focus:outline-none focus:bg-green-700">حفظ</button>
                         </div>
-                        <input type="hidden" name="import_amount" value="{{$import->amount}}">
-                        <input type="hidden" name="cte_harvest_id" value="{{$import->cte_harvest_id}}">
                 </form>
             </div>
         </div>

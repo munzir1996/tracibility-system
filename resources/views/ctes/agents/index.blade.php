@@ -2,7 +2,7 @@
 
 @section('body')
     <div class="flex justify-between">
-    <h3 class="text-gray-700 text-3xl font-medium">الحصاد</h3>
+    <h3 class="text-gray-700 text-3xl font-medium">الأنتاج</h3>
         <a href="{{route('cteagents.create')}}" class="px-6 py-3 bg-green-600 rounded-md text-white font-medium tracking-wide text-decoration-none hover:bg-green-500 ml-3">
             أضافة حصاد
         </a>
@@ -85,13 +85,11 @@
 
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
                                 <span class="relative inline-block px-3 py-1 font-semibold  leading-tight
-                                {{$cteagent->manafactureQrcode->status == Config::get('constants.delivery.received') ? 'text-green-900':''}}
-                                {{$cteagent->manafactureQrcode->status == Config::get('constants.delivery.pending') ? 'text-orange-900':''}}
-                                {{$cteagent->manafactureQrcode->status == Config::get('constants.delivery.rejected') ? 'text-red-900':''}}">
+                                {{$cteagent->manafactureQrcode->status == Config::get('constants.stock.available') ? 'text-green-900':''}}
+                                {{$cteagent->manafactureQrcode->status == Config::get('constants.stock.not_available') ? 'text-red-900':''}}">
                                     <span aria-hidden="" class="absolute inset-0 opacity-50 rounded-full
-                                    {{$cteagent->manafactureQrcode->status == Config::get('constants.delivery.received') ? 'bg-green-200':''}}
-                                    {{$cteagent->manafactureQrcode->status == Config::get('constants.delivery.pending') ? 'bg-orange-200':''}}
-                                    {{$cteagent->manafactureQrcode->status == Config::get('constants.delivery.rejected') ? 'bg-red-200':''}}"></span>
+                                    {{$cteagent->manafactureQrcode->status == Config::get('constants.stock.available') ? 'bg-green-200':''}}
+                                    {{$cteagent->manafactureQrcode->status == Config::get('constants.stock.not_available') ? 'bg-red-200':''}}"></span>
                                     <span class="relative">{{$cteagent->manafactureQrcode->status}}</span>
                                 </span>
                             </td>

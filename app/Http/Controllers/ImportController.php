@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\CteAgent;
 use App\CteHarvest;
+use App\Http\Requests\ImportUpdateRequest;
 use App\Import;
 use App\ManafactureQrcode;
 use Carbon\Carbon;
@@ -21,7 +22,7 @@ class ImportController extends Controller
     public function index()
     {
 
-        $imports = Import::received()->get();
+        $imports = Import::received()->latest()->get();
 
         return view('ctes.agents.import', [
             'imports' => $imports,
@@ -81,14 +82,10 @@ class ImportController extends Controller
      * @param  \App\Import  $import
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Import $import)
+    public function update(ImportUpdateRequest $request, Import $import)
     {
 
-        $request->validate([
-            'quantity' => 'required',
-            'import_amount' => 'required',
-            'used' => 'required|lte:import_amount',
-        ]);
+        $request->validated();
 
         $import->amount -= $request->used;
         if ($import->amount == 0) {
@@ -96,11 +93,9 @@ class ImportController extends Controller
         }
         $import->save();
 
-        // $cteHarvest = CteHarvest::findOrFail($request->cte_harvest_id);
-
         $manafactureQrcode = ManafactureQrcode::create([
             'code' => uniqid(),
-            'status' => Config::get('constants.status.manafacturing'),
+            'status' => Config::get('constants.stock.available'),
         ]);
 
         $what = [
@@ -119,11 +114,6 @@ class ImportController extends Controller
             'organization_id' => auth()->user()->organization_id,
             'manafacture_qrcode_id' => $manafactureQrcode->id,
         ]);
-
-        // $import->cteHarvest->harvestQrcode->update([
-        //     'status' => Config::get('constants.delivery.received'),
-        // ]);
-
 
         session()->flash('success', 'تم الأضافة بنجاح');
 

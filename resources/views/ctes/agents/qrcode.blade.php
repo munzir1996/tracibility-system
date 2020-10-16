@@ -170,10 +170,10 @@
                         <label class="mb-0" for="">: رقم الدفعة</label>
                     </div>
                     <div class="mb-3">
-                        <p class="inline-flex">{!!$qrcode->cteAgent->what->quantity!!} جوال</p>
+                        <p class="inline-flex">{!!$qrcode->cteAgent->what->quantity!!} شوال</p>
                         <label class="mb-0" for="">: الكمية</label>
                     </div>
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <span class="relative inline-block px-3 py-1 font-semibold  leading-tight
                         {{$qrcode->status == Config::get('constants.delivery.received') ? 'text-green-900':''}}
                         {{$qrcode->status == Config::get('constants.delivery.pending') ? 'text-orange-900':''}}
@@ -185,7 +185,7 @@
                             <span class="relative">{{$qrcode->status}}</span>
                         </span>
                         <label class="mb-0" for="">: الحالة</label>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </form>

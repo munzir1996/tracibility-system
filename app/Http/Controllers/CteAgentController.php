@@ -20,7 +20,7 @@ class CteAgentController extends Controller
      */
     public function index()
     {
-        $cteAgents = CteAgent::all();
+        $cteAgents = CteAgent::latest()->get();
 
         return view('ctes.agents.index', [
             'cteagents' => $cteAgents,
