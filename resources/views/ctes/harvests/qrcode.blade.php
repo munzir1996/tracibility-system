@@ -68,8 +68,8 @@
                                 <span class="text-red-600">(شوال)</span>
                             </label> --}}
                             {{-- <input type="text" name="quantity" class="form-input w-full mt-2 rounded-md focus:border-indigo-600" required> --}}
-                            <input type="hidden" name="cte_harvest_id" value="{{$qrcode->cteHarvest->id}}">
-                            <input type="hidden" name="amount" value="{!!$qrcode->cteHarvest->what->quantity!!}">
+                            {{-- <input type="hidden" name="cte_harvest_id" value="{{$qrcode->cteHarvest->id}}"> --}}
+                            {{-- <input type="hidden" name="amount" value="{!!$qrcode->cteHarvest->what->quantity!!}"> --}}
                         {{-- </div> --}}
                         <div class="flex justify-center mt-4">
                             <a href="{{route('harvest.qrcodes.reject', $qrcode->id)}}" class="px-4 py-2 mx-1 bg-red-600 text-white rounded-md text-decoration-none hover:bg-red-500 focus:outline-none focus:bg-red-700">رفض</a>
@@ -95,6 +95,7 @@
     </div>
 </div>
 {{--  --}}
+@if (!empty($qrcode->cteHarvest->import))
 <div class="flex flex-row w-full">
     <!-- left col -->
 
@@ -105,27 +106,50 @@
     <div class="w-1/5  flex justify-center">
         <div class="relative flex h-full w-1 bg-green-300 items-center justify-center">
             <div class="absolute flex flex-col justify-center h-24 w-24 rounded-full border-2 border-green-300 leading-none text-center z-10 bg-white font-thin">
-                <div>1</div>
-                <div>сентября</div>
+                <div>{{$qrcode->cteHarvest->import->when}}</div>
+                {{-- <div>сентября</div> --}}
             </div>
         </div>
     </div>
     <!--right column-->
     <div class="w-2/5 px-2 py-10 ">
         <div class="flex flex-col w-full rounded-lg shadow bg-white px-4 py-5">
-            <div class="text-gray-600 mb-2 flex justify-between">
-                <div class="font-bold">
-                    Svetlana Torn
+            <div class="text-gray-600 mb-2 flex justify-end">
+                <div class="font-bold text-2xl">
+                    التصنيع
                 </div>
             </div>
-            <div class="text-gray-600">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis enim esse fuga modi quisquam veritatis?
-                Привет Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad corporis culpa deserunt, dignissimos dolor esse fugit ipsam minus odit officiis placeat qui, quidem quis soluta vero? Adipisci alias eius et iure nam nihil reiciendis saepe, voluptatem. Alias cumque dicta dignissimos ea et laborum, minima similique.
+            <div class="text-gray-600 font-bold text-right">
+                <div class="mb-3">
+                    <p class="inline-flex">{{$qrcode->cteHarvest->import->user->name}}</p>
+                    <label class="mb-0" for="">: المستلم</label>
+                </div>
+                <div class="mb-3">
+                    <p class="inline-flex">{{$qrcode->cteHarvest->import->organization->name}}</p>
+                    <label class="mb-0" for="">: الجهة</label>
+                </div>
+                <div class="mb-3">
+                    <p class="inline-flex">{!!$qrcode->cteHarvest->what->quantity!!} طن</p>
+                    <label class="mb-0" for="">: الكمية</label>
+                </div>
+                <div class="mb-3">
+                    <span class="relative inline-block px-3 py-1 font-semibold  leading-tight
+                    {{$qrcode->status == Config::get('constants.delivery.received') ? 'text-green-900':''}}
+                    {{$qrcode->status == Config::get('constants.delivery.rejected') ? 'text-red-900':''}}">
+                        <span aria-hidden="" class="absolute inset-0 opacity-50 rounded-full
+                        {{$qrcode->status == Config::get('constants.delivery.received') ? 'bg-green-200':''}}
+                        {{$qrcode->status == Config::get('constants.delivery.rejected') ? 'bg-red-200':''}}"></span>
+                        <span class="relative">{{$qrcode->status}}</span>
+                    </span>
+                    <label class="mb-0" for="">: الحالة</label>
+                </div>
             </div>
         </div>
     </div>
 </div>
+@endif
 {{--  --}}
+
 <div class="flex flex-row w-full">
     <!-- left col -->
 

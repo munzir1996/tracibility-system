@@ -51,6 +51,11 @@ class CteHarvest extends Model
         return $this->belongsTo(HarvestQrcode::class);
     }
 
+    public function import()
+    {
+        return $this->hasOne(Import::class);
+    }
+
 }
 
 

@@ -19,6 +19,7 @@ class CreateImportsTable extends Migration
             $table->string('amount');
             $table->string('status')->default(Config::get('constants.stock.available'));
             $table->date('when');
+            $table->string('why');
             $table->foreignId('cte_harvest_id');
             $table->foreignId('user_id');
             $table->foreignId('organization_id');

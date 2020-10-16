@@ -19,8 +19,8 @@ class HarvestQrcodeController extends Controller
      */
     public function show($code)
     {
-
         $harvestQrcode = HarvestQrcode::with('cteHarvest')->where('code', $code)->first();
+        // dd($harvestQrcode);
 
         return view('ctes.harvests.qrcode', [
             'qrcode' => $harvestQrcode,
@@ -28,18 +28,13 @@ class HarvestQrcodeController extends Controller
 
     }
 
-    public function accept(Request $request, HarvestQrcode $harvestQrcode)
+    public function accept(HarvestQrcode $harvestQrcode)
     {
-
-        $request->validate([
-            'cte_harvest_id' => 'required',
-            'amount' => 'required',
-        ]);
-
         Import::create([
-            'amount' => $request->amount,
+            'amount' => $harvestQrcode->cteHarvest->what->quantity,
             'when' => Carbon::now(),
-            'cte_harvest_id' => $request->cte_harvest_id,
+            'why' => Config::get('constants.delivery.received'),
+            'cte_harvest_id' => $harvestQrcode->cteHarvest->id,
             'user_id' => auth()->id(),
             'organization_id' => auth()->user()->organization_id,
         ]);
@@ -59,6 +54,15 @@ class HarvestQrcodeController extends Controller
 
         $harvestQrcode->update([
             'status' => Config::get('constants.delivery.rejected'),
+        ]);
+
+        Import::create([
+            'amount' => $harvestQrcode->cteHarvest->what->quantity,
+            'when' => Carbon::now(),
+            'why' => Config::get('constants.delivery.rejected'),
+            'cte_harvest_id' => $harvestQrcode->cteHarvest->id,
+            'user_id' => auth()->id(),
+            'organization_id' => auth()->user()->organization_id,
         ]);
 
         session()->flash('success', 'تم الرفض بنجاح');
