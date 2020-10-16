@@ -23,6 +23,7 @@ $factory->define(CteAgent::class, function (Faker $faker) {
     return [
         'what' => $what,
         'when' => Carbon::now(),
+        'amount' => $what['quantity'],
         'why' => Config::get('constants.status.manafacturing'),
         'user_id' => $user->id,
         'organization_id' => $user->organization_id,

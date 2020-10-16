@@ -135,7 +135,7 @@
     <!-- left col -->
 
     <div class="w-2/5 px-2 py-10">
-        <form action="{{route('cteagents.store')}}" method="POST">
+        <form action="{{route('cteagents.store',$qrcode->cteAgent->id)}}" method="POST">
             @csrf
             <div class="flex flex-col w-full rounded-lg shadow bg-white px-4 py-5">
                 <div class="text-gray-600 mb-2 flex justify-between">
@@ -173,19 +173,17 @@
                         <p class="inline-flex">{!!$qrcode->cteAgent->what->quantity!!} شوال</p>
                         <label class="mb-0" for="">: الكمية</label>
                     </div>
-                    {{-- <div class="mb-3">
+                    <div class="mb-3">
                         <span class="relative inline-block px-3 py-1 font-semibold  leading-tight
-                        {{$qrcode->status == Config::get('constants.delivery.received') ? 'text-green-900':''}}
-                        {{$qrcode->status == Config::get('constants.delivery.pending') ? 'text-orange-900':''}}
-                        {{$qrcode->status == Config::get('constants.delivery.rejected') ? 'text-red-900':''}}">
+                        {{$qrcode->status == Config::get('constants.stock.available') ? 'text-green-900':''}}
+                        {{$qrcode->status == Config::get('constants.stock.not_available') ? 'text-red-900':''}}">
                             <span aria-hidden="" class="absolute inset-0 opacity-50 rounded-full
-                            {{$qrcode->status == Config::get('constants.delivery.received') ? 'bg-green-200':''}}
-                            {{$qrcode->status == Config::get('constants.delivery.pending') ? 'bg-orange-200':''}}
-                            {{$qrcode->status == Config::get('constants.delivery.rejected') ? 'bg-red-200':''}}"></span>
+                            {{$qrcode->status == Config::get('constants.stock.available') ? 'bg-green-200':''}}
+                            {{$qrcode->status == Config::get('constants.stock.not_available') ? 'bg-red-200':''}}"></span>
                             <span class="relative">{{$qrcode->status}}</span>
                         </span>
                         <label class="mb-0" for="">: الحالة</label>
-                    </div> --}}
+                    </div>
                 </div>
             </div>
         </form>
@@ -205,6 +203,8 @@
     </div>
 </div>
 {{-- New --}}
+@if ($qrcode->status == Config::get('constants.stock.available'))
+
 {{-- Old --}}
 <div class="flex flex-row w-full">
     <!-- left col -->
@@ -246,7 +246,9 @@
     </div>
 </div>
 {{-- Old --}}
-        </div>
+@endif
+
+</div>
     </div>
 </div>
 @endsection

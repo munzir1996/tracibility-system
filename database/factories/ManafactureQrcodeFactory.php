@@ -9,6 +9,6 @@ use Illuminate\Support\Facades\Config;
 $factory->define(ManafactureQrcode::class, function (Faker $faker) {
     return [
         'code' => uniqid(),
-        'status' => Config::get('constants.status.manafacturing'),
+        'status' => Config::get('constants.stock.available'),
     ];
 });

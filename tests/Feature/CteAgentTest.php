@@ -14,7 +14,7 @@ class CteAgentTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
+    /**  */
     public function can_create_cte_agent()
     {
 
@@ -68,7 +68,7 @@ class CteAgentTest extends TestCase
 
     }
 
-    /** @test */
+    /**  */
     public function can_delete_cte_agent(){
 
         $this->withoutExceptionHandling();

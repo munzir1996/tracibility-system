@@ -37,6 +37,8 @@ Route::prefix('/')->middleware('auth')->group(function () {
 
     Route::resource('imports', 'ImportController');
 
+    Route::post('cteshippings/{cteAgent}', 'CteShippingController@store');
+    // Route::resource('cteshippings', 'CteShippingController');
 });
 
 

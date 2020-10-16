@@ -47,41 +47,41 @@ class CteAgentController extends Controller
     public function store(Request $request)
     {
 
-        $request->validate([
-            'quantity' => 'required',
-            'cte_harvest_id' => 'required',
-        ]);
+        // $request->validate([
+        //     'quantity' => 'required',
+        //     'cte_harvest_id' => 'required',
+        // ]);
 
-        $cteHarvest = CteHarvest::findOrFail($request->cte_harvest_id);
+        // $cteHarvest = CteHarvest::findOrFail($request->cte_harvest_id);
 
-        $manafactureQrcode = ManafactureQrcode::create([
-            'code' => uniqid(),
-            'status' => Config::get('constants.status.manafacturing'),
-        ]);
+        // $manafactureQrcode = ManafactureQrcode::create([
+        //     'code' => uniqid(),
+        //     'status' => Config::get('constants.status.manafacturing'),
+        // ]);
 
-        $what = [
-            'gtin' => Keygen::numeric(14)->generate(),
-            'batch' => Keygen::numeric(3)->prefix('S-')->generate(true),
-            'quantity' => $request->quantity,
-        ];
+        // $what = [
+        //     'gtin' => Keygen::numeric(14)->generate(),
+        //     'batch' => Keygen::numeric(3)->prefix('S-')->generate(true),
+        //     'quantity' => $request->quantity,
+        // ];
 
-        CteAgent::create([
-            'what' => $what,
-            'when' => Carbon::now(),
-            'why' => Config::get('constants.status.manafacturing'),
-            'cte_harvest_id' => $request->cte_harvest_id,
-            'user_id' => auth()->id(),
-            'organization_id' => auth()->user()->organization_id,
-            'manafacture_qrcode_id' => $manafactureQrcode->id,
-        ]);
+        // CteAgent::create([
+        //     'what' => $what,
+        //     'when' => Carbon::now(),
+        //     'why' => Config::get('constants.status.manafacturing'),
+        //     'cte_harvest_id' => $request->cte_harvest_id,
+        //     'user_id' => auth()->id(),
+        //     'organization_id' => auth()->user()->organization_id,
+        //     'manafacture_qrcode_id' => $manafactureQrcode->id,
+        // ]);
 
-        $cteHarvest->harvestQrcode->update([
-            'status' => Config::get('constants.delivery.received'),
-        ]);
+        // $cteHarvest->harvestQrcode->update([
+        //     'status' => Config::get('constants.delivery.received'),
+        // ]);
 
-        session()->flash('success', 'تم الأضافة بنجاح');
+        // session()->flash('success', 'تم الأضافة بنجاح');
 
-        return redirect()->route('cteagents.index');
+        // return redirect()->route('cteagents.index');
 
     }
 
@@ -116,23 +116,23 @@ class CteAgentController extends Controller
      */
     public function update(Request $request, CteAgent $cteagent)
     {
-        $request->validate([
-            'quantity' => 'required',
-        ]);
+        // $request->validate([
+        //     'quantity' => 'required',
+        // ]);
 
-        $what = [
-            'gtin' => $cteagent->what->gtin,
-            'batch' => $cteagent->what->batch,
-            'quantity' => $request->quantity,
-        ];
+        // $what = [
+        //     'gtin' => $cteagent->what->gtin,
+        //     'batch' => $cteagent->what->batch,
+        //     'quantity' => $request->quantity,
+        // ];
 
-        $cteagent->update([
-            'what' => $what,
-            'when' => Carbon::now(),
-            'why' => Config::get('constants.status.manafacturing'),
-            'user_id' => auth()->id(),
-            'organization_id' => auth()->user()->organization_id,
-        ]);
+        // $cteagent->update([
+        //     'what' => $what,
+        //     'when' => Carbon::now(),
+        //     'why' => Config::get('constants.status.manafacturing'),
+        //     'user_id' => auth()->id(),
+        //     'organization_id' => auth()->user()->organization_id,
+        // ]);
     }
 
     /**
