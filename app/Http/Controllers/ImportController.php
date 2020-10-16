@@ -91,14 +91,12 @@ class ImportController extends Controller
         ]);
 
         $import->amount -= $request->used;
-
         if ($import->amount == 0) {
             $import->status = Config::get('constants.stock.not_available');
         }
-
         $import->save();
 
-        $cteHarvest = CteHarvest::findOrFail($request->cte_harvest_id);
+        // $cteHarvest = CteHarvest::findOrFail($request->cte_harvest_id);
 
         $manafactureQrcode = ManafactureQrcode::create([
             'code' => uniqid(),
@@ -111,19 +109,20 @@ class ImportController extends Controller
             'quantity' => $request->quantity,
         ];
 
-        CteAgent::create([
+        $cteAgent = CteAgent::create([
             'what' => $what,
             'when' => Carbon::now(),
             'why' => Config::get('constants.status.manafacturing'),
-            'cte_harvest_id' => $request->cte_harvest_id,
+            'amount' => $request->quantity,
+            'cte_harvest_id' => $import->cteHarvest->id,
             'user_id' => auth()->id(),
             'organization_id' => auth()->user()->organization_id,
             'manafacture_qrcode_id' => $manafactureQrcode->id,
-            ]);
-
-        $cteHarvest->harvestQrcode->update([
-            'status' => Config::get('constants.delivery.received'),
         ]);
+
+        // $import->cteHarvest->harvestQrcode->update([
+        //     'status' => Config::get('constants.delivery.received'),
+        // ]);
 
 
         session()->flash('success', 'تم الأضافة بنجاح');

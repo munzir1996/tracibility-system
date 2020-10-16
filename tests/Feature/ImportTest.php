@@ -6,27 +6,32 @@ use App\Import;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use Illuminate\Support\Facades\Config;
 
 class ImportTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
+    /** @test */
     public function can_create_manafacture()
     {
         $this->withoutExceptionHandling();
-        $this->loginUser();
-
         $import = factory(Import::class)->create();
 
-        $response = $this->put('/imports'. $import->id, [
+        $this->loginUser($import->user);
 
+        $response = $this->put('imports/'. $import->id, [
+            'quantity' => 20,
+            'import_amount' => 20,
+            'used' => 10,
         ]);
 
-        $response->assertStatus(200);
+        $this->assertDatabaseHas('cte_agents', [
+            'amount' => 20,
+            'why' => Config::get('constants.status.manafacturing'),
+            'user_id' => $import->user->id,
+            'organization_id' => $import->user->organization->id,
+        ]);
+
     }
 }

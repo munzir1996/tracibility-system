@@ -18,6 +18,7 @@ class CreateCteAgentsTable extends Migration
             $table->json('what');
             $table->string('why');
             $table->date('when');
+            $table->string('amount');
             $table->foreignId('cte_harvest_id');
             $table->foreignId('user_id');
             $table->foreignId('organization_id');
