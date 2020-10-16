@@ -21,7 +21,7 @@ class ImportController extends Controller
     public function index()
     {
 
-        $imports = Import::all();
+        $imports = Import::received()->get();
 
         return view('ctes.agents.import', [
             'imports' => $imports,

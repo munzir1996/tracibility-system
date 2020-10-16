@@ -61,21 +61,7 @@
                         </span>
                         <label class="mb-0" for="">: الحالة</label>
                     </div>
-                    @if ($qrcode->status == Config::get('constants.delivery.pending'))
-                        {{-- <div>
-                            <label class="block text-right text-gray-700" for="username">
-                                الكمية المنتجة
-                                <span class="text-red-600">(شوال)</span>
-                            </label> --}}
-                            {{-- <input type="text" name="quantity" class="form-input w-full mt-2 rounded-md focus:border-indigo-600" required> --}}
-                            {{-- <input type="hidden" name="cte_harvest_id" value="{{$qrcode->cteHarvest->id}}"> --}}
-                            {{-- <input type="hidden" name="amount" value="{!!$qrcode->cteHarvest->what->quantity!!}"> --}}
-                        {{-- </div> --}}
-                        <div class="flex justify-center mt-4">
-                            <a href="{{route('harvest.qrcodes.reject', $qrcode->id)}}" class="px-4 py-2 mx-1 bg-red-600 text-white rounded-md text-decoration-none hover:bg-red-500 focus:outline-none focus:bg-red-700">رفض</a>
-                            <button type="submit" class="px-4 py-2 mx-1 bg-green-600 text-white rounded-md hover:bg-green-500 focus:outline-none focus:bg-green-700">قبول</button>
-                        </div>
-                    @endif
+
                 </div>
             </div>
         </form>
@@ -116,7 +102,7 @@
         <div class="flex flex-col w-full rounded-lg shadow bg-white px-4 py-5">
             <div class="text-gray-600 mb-2 flex justify-end">
                 <div class="font-bold text-2xl">
-                    التصنيع
+                    الأستلام
                 </div>
             </div>
             <div class="text-gray-600 font-bold text-right">
@@ -134,12 +120,12 @@
                 </div>
                 <div class="mb-3">
                     <span class="relative inline-block px-3 py-1 font-semibold  leading-tight
-                    {{$qrcode->status == Config::get('constants.delivery.received') ? 'text-green-900':''}}
-                    {{$qrcode->status == Config::get('constants.delivery.rejected') ? 'text-red-900':''}}">
+                    {{$qrcode->cteHarvest->import->why == Config::get('constants.delivery.received') ? 'text-green-900':''}}
+                    {{$qrcode->cteHarvest->import->why == Config::get('constants.delivery.rejected') ? 'text-red-900':''}}">
                         <span aria-hidden="" class="absolute inset-0 opacity-50 rounded-full
-                        {{$qrcode->status == Config::get('constants.delivery.received') ? 'bg-green-200':''}}
-                        {{$qrcode->status == Config::get('constants.delivery.rejected') ? 'bg-red-200':''}}"></span>
-                        <span class="relative">{{$qrcode->status}}</span>
+                        {{$qrcode->cteHarvest->import->why == Config::get('constants.delivery.received') ? 'bg-green-200':''}}
+                        {{$qrcode->cteHarvest->import->why == Config::get('constants.delivery.rejected') ? 'bg-red-200':''}}"></span>
+                        <span class="relative">{{$qrcode->cteHarvest->import->why}}</span>
                     </span>
                     <label class="mb-0" for="">: الحالة</label>
                 </div>
@@ -150,40 +136,61 @@
 @endif
 {{--  --}}
 
+
+
+
+
+
+{{--  --}}
+@if ($qrcode->status == Config::get('constants.delivery.pending'))
 <div class="flex flex-row w-full">
     <!-- left col -->
 
     <div class="w-2/5 px-2 py-10">
-        <div class="flex flex-col w-full rounded-lg shadow bg-white px-4 py-5">
-            <div class="text-gray-600 mb-2 flex justify-between">
-                <div class="font-bold">
-                    Svjatoslav Torn
-                </div>
-                <div class="flex flex-row">
-                    <button class="text-blue-500 mr-2 hover:text-blue-300 transition duration-200"><i class="far fa-edit"></i></button>
-                    <button class="text-red-500 hover:text-red-300 transition duration-200"><i class="far fa-trash-alt"></i></button>
-                </div>
-            </div>
-            <div class="text-gray-600">
-                Привет Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad corporis culpa deserunt, dignissimos dolor esse fugit ipsam minus odit officiis placeat qui, quidem quis soluta vero? Adipisci alias eius et iure nam nihil reiciendis saepe, voluptatem. Alias cumque dicta dignissimos ea et laborum, minima similique.
-            </div>
-        </div>
 
     </div>
     <!--line column-->
     <div class="w-1/5  flex justify-center">
-        <div class="relative flex h-full w-1 bg-green-300 items-center justify-center">
+        {{-- <div class="relative flex h-full w-1 bg-green-300 items-center justify-center">
             <div class="absolute flex flex-col justify-center h-24 w-24 rounded-full border-2 border-green-300 leading-none text-center z-10 bg-white font-thin">
-                <div>2</div>
+                <div>{{$qrcode->cteHarvest->import->when}}</div>
                 <div>сентября</div>
             </div>
-        </div>
+        </div> --}}
     </div>
     <!--right column-->
     <div class="w-2/5 px-2 py-10 ">
-
+        <form action="{{route('harvest.qrcodes.accept', $qrcode->id)}}" method="POST">
+        @csrf
+        {{method_field('PUT')}}
+            <div class="flex flex-col w-full rounded-lg shadow bg-white px-4 py-5">
+                <div class="text-gray-600 mb-2 flex justify-end">
+                    <div class="font-bold text-2xl">
+                        أستلام
+                    </div>
+                </div>
+                <div class="text-gray-600">
+                    {{-- <div>
+                        <label class="block text-right text-gray-700" for="username">
+                            الكمية المنتجة
+                            <span class="text-red-600">(شوال)</span>
+                        </label> --}}
+                        {{-- <input type="text" name="quantity" class="form-input w-full mt-2 rounded-md focus:border-indigo-600" required> --}}
+                        {{-- <input type="hidden" name="cte_harvest_id" value="{{$qrcode->cteHarvest->id}}"> --}}
+                        {{-- <input type="hidden" name="amount" value="{!!$qrcode->cteHarvest->what->quantity!!}"> --}}
+                    {{-- </div> --}}
+                    <div class="flex justify-center mt-4">
+                        <a href="{{route('harvest.qrcodes.reject', $qrcode->id)}}" class="px-4 py-2 mx-1 bg-red-600 text-white rounded-md text-decoration-none hover:bg-red-500 focus:outline-none focus:bg-red-700">رفض</a>
+                        <button type="submit" class="px-4 py-2 mx-1 bg-green-600 text-white rounded-md hover:bg-green-500 focus:outline-none focus:bg-green-700">قبول</button>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
+@endif
+{{--  --}}
+
         </div>
 
 
