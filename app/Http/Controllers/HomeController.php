@@ -23,8 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // $id = Keygen::numeric(12)->prefix('TM-')->generate(true);
-        // dd($id);
 
         session()->flash('toast', [
             'type' => 'success',

@@ -145,14 +145,6 @@ class UserController extends Controller
 
         return redirect()->route('users.index');
 
-        // $user->update([
-        //     'name' => $request->name,
-        //     'national_id' => $request->national_id,
-        //     'phone' => $request->phone,
-        //     'password' => bcrypt($request->password),
-        //     'organization_id' => $request->organization_id,
-        // ]);
-
     }
 
     /**

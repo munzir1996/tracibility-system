@@ -15,10 +15,12 @@ class HarvestQrcodeTest extends TestCase
     /** @test */
     public function can_reject_cte_harvest()
     {
-        $this->withoutExceptionHandling();
-        $this->loginUser();
 
+        $this->withoutExceptionHandling();
         $cteHarvest = factory(CteHarvest::class)->create();
+
+        $this->loginUser($cteHarvest->user);
+
 
         $response = $this->get('/harvest/qrcode/reject/'. $cteHarvest->harvestQrcode->id);
 
@@ -26,5 +28,38 @@ class HarvestQrcodeTest extends TestCase
             'status' => Config::get('constants.delivery.rejected'),
         ]);
 
+        $this->assertDatabaseHas('imports', [
+            'amount' => $cteHarvest->what->quantity,
+            'status' => Config::get('constants.stock.available'),
+            'why' => Config::get('constants.delivery.rejected')
+        ]);
+
     }
+
+    /** @test */
+    public function can_accept_cte_harvest()
+    {
+
+        $this->withoutExceptionHandling();
+        $cteHarvest = factory(CteHarvest::class)->create();
+
+        $this->loginUser($cteHarvest->user);
+
+
+        $response = $this->put('/harvest/qrcode/accept/'. $cteHarvest->harvestQrcode->id);
+
+        $this->assertDatabaseHas('harvest_qrcodes', [
+            'status' => Config::get('constants.delivery.received'),
+        ]);
+
+        $this->assertDatabaseHas('imports', [
+            'amount' => $cteHarvest->what->quantity,
+            'status' => Config::get('constants.stock.available'),
+            'why' => Config::get('constants.delivery.received')
+        ]);
+
+    }
+
 }
+
+
