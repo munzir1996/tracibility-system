@@ -3,9 +3,9 @@
 @section('body')
     <div class="flex justify-between">
     <h3 class="text-gray-700 text-3xl font-medium">العمليات</h3>
-        <a href="{{route('cteshippings.create')}}" class="px-6 py-3 bg-green-600 rounded-md text-white font-medium tracking-wide text-decoration-none hover:bg-green-500 ml-3">
+        {{-- <a href="{{route('cteshippings.create')}}" class="px-6 py-3 bg-green-600 rounded-md text-white font-medium tracking-wide text-decoration-none hover:bg-green-500 ml-3">
             أضافة حصاد
-        </a>
+        </a> --}}
     </div>
 
     <div class="mt-4">

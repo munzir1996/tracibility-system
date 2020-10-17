@@ -11,7 +11,7 @@ return [
 
     'type' => [
         'harvest' => 'الحصاد',
-        'agent' => 'الوكيل',
+        'agent' => 'المطحنة',
         'bakery' => 'المخبز',
         'transport' => 'النقل',
         'admin' => 'أدمن',

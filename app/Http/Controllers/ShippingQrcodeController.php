@@ -44,20 +44,14 @@ class ShippingQrcodeController extends Controller
      * @param  \App\ShippingQrcode  $shippingQrcode
      * @return \Illuminate\Http\Response
      */
-    public function show(ShippingQrcode $shippingQrcode)
+    public function show($code)
     {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\ShippingQrcode  $shippingQrcode
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ShippingQrcode $shippingQrcode)
-    {
-        //
+        $shippingQrcode = ShippingQrcode::where('code', $code)->first();
+
+        return view('ctes.shippings.qrcode', [
+            'qrcode' => $shippingQrcode,
+        ]);
     }
 
     /**
@@ -82,4 +76,10 @@ class ShippingQrcodeController extends Controller
     {
         //
     }
+
+    public function acceptTransport($code)
+    {
+        //
+    }
+
 }
