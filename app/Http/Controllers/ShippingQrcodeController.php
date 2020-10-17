@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\CteTransport;
 use App\ShippingQrcode;
+use App\Transport;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 
 class ShippingQrcodeController extends Controller
 {
@@ -79,7 +83,28 @@ class ShippingQrcodeController extends Controller
 
     public function acceptTransport($code)
     {
-        //
+
+        $shippingQrcode = ShippingQrcode::where('code', $code)->first();
+        $transport = Transport::where('user_id', auth()->user()->id)->first();
+
+        $shippingQrcode->update([
+            'status' => Config::get('constants.delivery.transporting'),
+        ]);
+
+        CteTransport::create([
+            'why' => Config::get('constants.status.transporting'),
+            'what_truck' => $transport->giai,
+            'when' => Carbon::now(),
+            'cte_shipping_id' => $shippingQrcode->cteShipping->id,
+            'user_id' => auth()->id(),
+            'organization_id' => auth()->user()->organization_id,
+            'shipping_qrcode_id' => $shippingQrcode->id,
+        ]);
+
+        session()->flash('success', 'تم الأضافة بنجاح');
+
+        return redirect()->route('shipping.qrcodes.show', $code);
+
     }
 
 }

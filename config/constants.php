@@ -5,6 +5,7 @@ return [
         'harvesting' => 'حصاد',
         'manafacturing' => 'التصنيع',
         'shipping' => 'الشحن',
+        'transporting' => 'التوصيل',
         'receiving' => 'أستلام',
         'return' => 'أعادة',
     ],

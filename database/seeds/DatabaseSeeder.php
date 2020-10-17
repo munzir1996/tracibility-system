@@ -1,6 +1,7 @@
 <?php
 
 use App\Organization;
+use App\Transport;
 use App\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -31,6 +32,11 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => Hash::make('password'), // password
             'organization_id' => $adminOrganization->id,
+        ]);
+
+        $transport = Transport::create([
+            'giai' => uniqid(),
+            'user_id' => $user->id,
         ]);
 
         $user->givePermissionTo('super-admin');
