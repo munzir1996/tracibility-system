@@ -38,9 +38,14 @@ class User extends Authenticatable
         return $this->hasMany(CteShipping::class);
     }
 
-    public function import()
+    public function imports()
     {
         return $this->hasMany(Import::class);
+    }
+
+    public function transports()
+    {
+        return $this->hasMany(Transport::class);
     }
 
     /**

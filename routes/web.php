@@ -42,6 +42,8 @@ Route::prefix('/')->middleware('auth')->group(function () {
     Route::resource('cteshippings', 'CteShippingController');
     Route::get('shipping/qrcode/{code}', 'ShippingQrcodeController@show')->name('shipping.qrcodes.show');
 
+    Route::resource('transports', 'TransportController');
+
 });
 
 

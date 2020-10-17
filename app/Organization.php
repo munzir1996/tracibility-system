@@ -36,4 +36,19 @@ class Organization extends Model
         return $this->hasMany(CteHarvest::class);
     }
 
+    public function cteAgents()
+    {
+        return $this->hasMany(CteAgent::class);
+    }
+
+    public function cteShippings()
+    {
+        return $this->hasMany(CteShipping::class);
+    }
+
+    public function transports()
+    {
+        return $this->hasMany(Transport::class);
+    }
+
 }
