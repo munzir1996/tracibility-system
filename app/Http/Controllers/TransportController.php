@@ -16,7 +16,13 @@ class TransportController extends Controller
      */
     public function index()
     {
-        //
+
+        $transports = Transport::latest()->get();
+
+        return view('transports.index', [
+            'transports' => $transports,
+        ]);
+
     }
 
     /**
@@ -26,7 +32,7 @@ class TransportController extends Controller
      */
     public function create()
     {
-        //
+        return view('transports.create');
     }
 
     /**
@@ -83,7 +89,11 @@ class TransportController extends Controller
      */
     public function edit(Transport $transport)
     {
-        //
+
+        return view('transports.edit', [
+            'transport' => $transport,
+        ]);
+
     }
 
     /**
@@ -101,6 +111,7 @@ class TransportController extends Controller
             'phone' => 'required|min:10|max:10',
             'password' => 'sometimes|min:8|confirmed',
         ]);
+
         $transport->user->update([
             'name' => $request->name,
             'national_id' => $request->national_id,

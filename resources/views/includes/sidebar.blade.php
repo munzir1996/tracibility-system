@@ -45,7 +45,8 @@
         </a>
 
 
-        <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 text-decoration-none hover:text-gray-100" href="{{route('cteharvests.index')}}">
+        <a class="flex items-center mt-4 py-2 px-6 hover:bg-opacity-25 text-decoration-none
+        {{Request::is('cteharvests*')? 'bg-gray-700  text-gray-100': 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100'}}" href="{{route('cteharvests.index')}}">
             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z" />
             </svg>
@@ -96,6 +97,10 @@
             </a>
             <a href="{{route('cteshippings.index')}}" class="flex items-center py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 text-decoration-none hover:text-gray-100">
                 <span class="mx-3">العمليات</span>
+                {{-- <span class="mx-2 text-gray-300"></span> --}}
+            </a>
+            <a href="{{route('transports.index')}}" class="flex items-center py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 text-decoration-none hover:text-gray-100">
+                <span class="mx-3">السائقين</span>
                 {{-- <span class="mx-2 text-gray-300"></span> --}}
             </a>
         </div>

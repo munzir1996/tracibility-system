@@ -8,15 +8,11 @@ class Transport extends Model
 {
 
     protected $guarded = [];
+    protected $with = ['user'];
 
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function organization()
-    {
-        return $this->belongsTo(Organization::class);
     }
 
 }

@@ -23,6 +23,8 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('flash', require('./components/Flash.vue').default);
 Vue.component('users-create', require('./components/users/CreateComponent.vue').default);
 Vue.component('users-edit', require('./components/users/EditComponent.vue').default);
+Vue.component('transports-create', require('./components/transports/CreateComponent.vue').default);
+Vue.component('transports-edit', require('./components/transports/EditComponent.vue').default);
 Vue.component('sidebar-component', require('./components/SidebarComponent.vue').default);
 
 /**
