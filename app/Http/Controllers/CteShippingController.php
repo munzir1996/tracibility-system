@@ -55,7 +55,7 @@ class CteShippingController extends Controller
      * @param  \App\CteShipping  $cteShipping
      * @return \Illuminate\Http\Response
      */
-    public function show(CteShipping $cteShipping)
+    public function show(CteShipping $cteshipping)
     {
         //
     }
@@ -66,7 +66,7 @@ class CteShippingController extends Controller
      * @param  \App\CteShipping  $cteShipping
      * @return \Illuminate\Http\Response
      */
-    public function edit(CteShipping $cteShipping)
+    public function edit(CteShipping $cteshipping)
     {
         //
     }
@@ -78,7 +78,7 @@ class CteShippingController extends Controller
      * @param  \App\CteShipping  $cteShipping
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CteShipping $cteShipping)
+    public function update(Request $request, CteShipping $cteshipping)
     {
         //
     }
@@ -89,8 +89,13 @@ class CteShippingController extends Controller
      * @param  \App\CteShipping  $cteShipping
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CteShipping $cteShipping)
+    public function destroy(CteShipping $cteshipping)
     {
-        //
+        $cteshipping->delete();
+
+        session()->flash('success', 'تم الحذف بنجاح');
+
+        return redirect()->route('cteagents.index');
+
     }
 }

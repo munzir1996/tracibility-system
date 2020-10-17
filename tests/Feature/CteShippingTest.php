@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\CteAgent;
+use App\CteShipping;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -38,6 +39,23 @@ class CteShippingTest extends TestCase
         ]);
 
     }
+
+    /** @test */
+    public function can_delete_a_shipping()
+    {
+        $cteShipping = factory(CteShipping::class)->create();
+
+        $this->withoutExceptionHandling();
+        $this->loginUser($cteShipping->user);
+
+        $this->delete('cteshippings/'. $cteShipping->id);
+
+        $this->assertDatabaseMissing('cte_shippings', [
+            'id' => $cteShipping,
+        ]);
+
+    }
+
 
 }
 
