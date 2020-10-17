@@ -19,7 +19,13 @@ class CteShippingController extends Controller
      */
     public function index()
     {
-        //
+
+        $cteShippings = CteShipping::latest()->get();
+
+        return view('ctes.shippings.index', [
+            'cteshippings' => $cteShippings,
+        ]);
+
     }
 
     /**
@@ -38,38 +44,9 @@ class CteShippingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CteShippingStoreRequest $request, CteAgent $cteAgent)
+    public function store(Request $request)
     {
-
-        $request->validated();
-
-        $what = [
-            'gtin' => $cteAgent->what->gtin,
-            'batch' => $cteAgent->what->batch,
-            'quantity' => $request->quantity,
-        ];
-
-        $cteAgent->amount -= $request->quantity;
-        if ($cteAgent->amount == 0) {
-            $cteAgent->status = Config::get('constants.stock.not_available');
-        }
-        $cteAgent->save();
-
-        $shippingQrcode = ShippingQrcode::create([
-            'code' => uniqid(),
-            'status' => Config::get('constants.delivery.pending'),
-        ]);
-
-        $cteShipping = CteShipping::create([
-            'what' => $what,
-            'why' => Config::get('constants.status.shipping'),
-            'when' => Carbon::now(),
-            'cte_agent_id' => $cteAgent->id,
-            'user_id' => auth()->id(),
-            'organization_id' => auth()->user()->organization_id,
-            'shipping_qrcode_id' => $shippingQrcode->id,
-        ]);
-
+        //
     }
 
     /**

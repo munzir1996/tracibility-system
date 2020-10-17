@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\CteAgent;
+use App\CteShipping;
+use App\Http\Requests\ShippingQrcodeStoreRequest;
 use App\ManafactureQrcode;
+use App\ShippingQrcode;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 
 class ManafactureQrcodeController extends Controller
 {
@@ -33,9 +39,43 @@ class ManafactureQrcodeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ShippingQrcodeStoreRequest $request, CteAgent $cteAgent)
     {
-        //
+        $request->validated();
+
+        $what = [
+            'gtin' => $cteAgent->what->gtin,
+            'batch' => $cteAgent->what->batch,
+            'quantity' => $request->quantity,
+        ];
+
+        $cteAgent->amount -= $request->quantity;
+        if ($cteAgent->amount == 0) {
+            $cteAgent->manafactureQrcode->update([
+                'status' => Config::get('constants.stock.not_available'),
+            ]);
+        }
+
+        $cteAgent->save();
+
+        $shippingQrcode = ShippingQrcode::create([
+            'code' => uniqid(),
+            'status' => Config::get('constants.delivery.pending'),
+        ]);
+
+        $cteShipping = CteShipping::create([
+            'what' => $what,
+            'why' => Config::get('constants.status.shipping'),
+            'when' => Carbon::now(),
+            'cte_agent_id' => $cteAgent->id,
+            'user_id' => auth()->id(),
+            'organization_id' => auth()->user()->organization_id,
+            'shipping_qrcode_id' => $shippingQrcode->id,
+        ]);
+
+        session()->flash('success', 'تم الأضافة بنجاح');
+
+        return redirect()->route('manafacture.qrcodes.show', $cteAgent->manafactureQrcode->code);
     }
 
     /**

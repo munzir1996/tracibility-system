@@ -34,11 +34,14 @@ Route::prefix('/')->middleware('auth')->group(function () {
 
     Route::resource('cteagents', 'CteAgentController');
     Route::get('manafacture/qrcode/{code}', 'ManafactureQrcodeController@show')->name('manafacture.qrcodes.show');
+    Route::post('manafacture/qrcode/shippings/{cteAgent}', 'ManafactureQrcodeController@store')->name('manafacture.qrcodes.store');
 
     Route::resource('imports', 'ImportController');
 
-    Route::post('cteshippings/{cteAgent}', 'CteShippingController@store');
-    // Route::resource('cteshippings', 'CteShippingController');
+    // Route::post('cteshippings/{cteAgent}', 'CteShippingController@store')->name('cteshippings.store');
+    Route::resource('cteshippings', 'CteShippingController');
+    Route::get('shipping/qrcode/{code}', 'ShippingQrcodeController@show')->name('shipping.qrcodes.show');
+
 });
 
 

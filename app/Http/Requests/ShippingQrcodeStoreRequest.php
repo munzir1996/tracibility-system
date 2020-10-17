@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CteShippingStoreRequest extends FormRequest
+class ShippingQrcodeStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -40,4 +40,10 @@ class CteShippingStoreRequest extends FormRequest
             'quantity' => 'required|lte:cteagent_amount'
         ];
     }
+
 }
+
+
+
+
+
