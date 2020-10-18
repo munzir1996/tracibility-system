@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CteReceiving;
 use App\CteTransport;
 use App\ShippingQrcode;
 use App\Transport;
@@ -105,6 +106,29 @@ class ShippingQrcodeController extends Controller
 
         return redirect()->route('shipping.qrcodes.show', $code);
 
+    }
+
+    public function acceptReceive($code)
+    {
+        $shippingQrcode = ShippingQrcode::where('code', $code)->first();
+        $transport = Transport::where('user_id', auth()->user()->id)->first();
+        $shippingQrcode->update([
+            'status' => Config::get('constants.delivery.received'),
+            ]);
+
+        CteReceiving::create([
+            'why' => Config::get('constants.status.receiving'),
+            'what' => $shippingQrcode->cteShipping->what,
+            'when' => Carbon::now(),
+            'cte_transport_id' => $shippingQrcode->cteShipping->id,
+            'user_id' => auth()->id(),
+            'organization_id' => auth()->user()->organization_id,
+            'shipping_qrcode_id' => $shippingQrcode->id,
+        ]);
+
+        session()->flash('success', 'تم الأضافة بنجاح');
+
+        return redirect()->route('shipping.qrcodes.show', $code);
     }
 
 }

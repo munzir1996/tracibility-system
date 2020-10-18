@@ -10,6 +10,7 @@ use App\ShippingQrcode;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
+use Keygen\Keygen;
 
 class ManafactureQrcodeController extends Controller
 {
@@ -65,6 +66,7 @@ class ManafactureQrcodeController extends Controller
 
         $cteShipping = CteShipping::create([
             'what' => $what,
+            'sscc' => Keygen::numeric(18)->generate(true),
             'why' => Config::get('constants.status.shipping'),
             'when' => Carbon::now(),
             'cte_agent_id' => $cteAgent->id,

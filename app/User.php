@@ -54,6 +54,11 @@ class User extends Authenticatable
         return $this->hasMany(CteTransport::class);
     }
 
+    public function cteReceivings()
+    {
+        return $this->hasMany(CteReceiving::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *

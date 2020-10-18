@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\CteShipping;
+use App\CteTransport;
 use App\Transport;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -37,6 +38,35 @@ class ShippingQrcodeTest extends TestCase
             'user_id' => $cteShipping->user->id,
             'organization_id' => $cteShipping->user->organization->id,
             'shipping_qrcode_id' => $cteShipping->shippingQrcode->id,
+        ]);
+
+    }
+
+    /** @test */
+    public function accept_receiving_shipping()
+    {
+
+        $cteTransport = factory(CteTransport::class)->create();
+        $transport = factory(Transport::class)->create([
+            'user_id' => $cteTransport->user->id,
+        ]);
+        dd($cteTransport->shippingQrcode->code);
+        $this->withoutExceptionHandling();
+        $this->loginUser($cteTransport->user);
+
+        $response = $this->get('shipping/qrcode/accept/receive/'. $cteTransport->shippingQrcode->code);
+
+        $this->assertDatabaseHas('shipping_qrcodes', [
+            'status' => Config::get('constants.delivery.received'),
+        ]);
+
+        $this->assertDatabaseHas('cte_receivings', [
+            'what' => $transport->giai,
+            'why' => Config::get('constants.status.receiving'),
+            'cte_transport_id' => $cteTransport->id,
+            'user_id' => $cteTransport->user->id,
+            'organization_id' => $cteTransport->user->organization->id,
+            'shipping_qrcode_id' => $cteTransport->shippingQrcode->id,
         ]);
 
     }

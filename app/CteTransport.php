@@ -28,5 +28,10 @@ class CteTransport extends Model
         return $this->belongsTo(ShippingQrcode::class);
     }
 
+    public function cteReceivings()
+    {
+        return $this->hasOne(CteReceiving::class);
+    }
+
 
 }

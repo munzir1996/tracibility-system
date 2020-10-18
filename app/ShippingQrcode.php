@@ -14,9 +14,14 @@ class ShippingQrcode extends Model
     }
 
 
-    public function cteTransports()
+    public function cteTransport()
     {
-        return $this->hasMany(CteTransport::class);
+        return $this->hasOne(CteTransport::class);
+    }
+
+    public function cteReceiving()
+    {
+        return $this->hasOne(CteReceiving::class);
     }
 
 }

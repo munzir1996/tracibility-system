@@ -2,31 +2,28 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\CteAgent;
-use App\CteShipping;
-use App\ShippingQrcode;
+use App\CteReceiving;
+use App\CteTransport;
 use App\User;
 use Carbon\Carbon;
 use Faker\Generator as Faker;
 use Illuminate\Support\Facades\Config;
 
-$factory->define(CteShipping::class, function (Faker $faker) {
-
+$factory->define(CteReceiving::class, function (Faker $faker) {
     $what = [
         'gtin' => uniqid(),
         'batch' => uniqid(),
         'quantity' => $faker->numberBetween($min = 1, $max = 200),
     ];
 
-    $user = factory(User::class)->states('agent')->create();
+    $user = factory(User::class)->states('transport')->create();
 
     return [
         'what' => $what,
-        'sscc' => uniqid(),
-        'why' => Config::get('constants.status.shipping'),
+        'why' => Config::get('constants.status.receiving'),
         'when' => Carbon::now(),
-        'cte_agent_id' => function(){
-            return factory(CteAgent::class)->create()->id;
+        'cte_transport_id' => function(){
+            return factory(CteTransport::class)->create()->id;
         },
         'user_id' => $user->id,
         'organization_id' => $user->organization_id,
@@ -34,4 +31,5 @@ $factory->define(CteShipping::class, function (Faker $faker) {
             return factory(ShippingQrcode::class)->create()->id;
         },
     ];
+
 });

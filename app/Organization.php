@@ -57,4 +57,9 @@ class Organization extends Model
         return $this->hasMany(CteTransport::class);
     }
 
+    public function cteReceivings()
+    {
+        return $this->hasMany(CteReceiving::class);
+    }
+
 }
