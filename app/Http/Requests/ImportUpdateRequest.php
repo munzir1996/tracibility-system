@@ -39,8 +39,7 @@ class ImportUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'quantity' => 'required',
-            'used' => 'required|lte:import_amount',
+            'quantity' => 'required|lte:import_amount',
         ];
     }
 

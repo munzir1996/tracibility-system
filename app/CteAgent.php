@@ -2,7 +2,9 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Config;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class CteAgent extends Model
@@ -13,6 +15,12 @@ class CteAgent extends Model
     protected $casts = [
         'what' => 'array',
    ];
+
+    public function scopeReceived($query){
+        return $query->whereHas('manafactureQrcode', function (Builder $query) {
+            $query->whereIn('status', [Config::get('constants.stock.available'), Config::get('constants.stock.not_available')]);
+        });
+    }
 
     public function getWhatAttribute($value)
     {

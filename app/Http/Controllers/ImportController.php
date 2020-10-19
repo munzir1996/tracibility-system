@@ -87,7 +87,7 @@ class ImportController extends Controller
 
         $request->validated();
 
-        $import->amount -= $request->used;
+        $import->amount -= $request->quantity;
         if ($import->amount == 0) {
             $import->status = Config::get('constants.stock.not_available');
         }
@@ -95,7 +95,7 @@ class ImportController extends Controller
 
         $manafactureQrcode = ManafactureQrcode::create([
             'code' => uniqid(),
-            'status' => Config::get('constants.stock.available'),
+            'status' => Config::get('constants.delivery.pending'),
         ]);
 
         $what = [
@@ -107,7 +107,7 @@ class ImportController extends Controller
         $cteAgent = CteAgent::create([
             'what' => $what,
             'when' => Carbon::now(),
-            'why' => Config::get('constants.status.manafacturing'),
+            'why' => Config::get('constants.status.agent'),
             'amount' => $request->quantity,
             'cte_harvest_id' => $import->cteHarvest->id,
             'user_id' => auth()->id(),

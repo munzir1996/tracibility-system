@@ -51,7 +51,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z" />
             </svg>
 
-            <span class="mx-3">الحصاد</span>
+            <span class="mx-3">المطحنة</span>
         </a>
 
         <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 text-decoration-none hover:text-gray-100" href="/tables">
@@ -67,7 +67,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
             </svg>
 
-            <span class="mx-3">المطحنة</span>
+            <span class="mx-3">الوكيل</span>
             {{-- Arrow --}}
             <svg v-if="!agentIsOpen" class="fill-current w-3 text-gray-500" version="1.1" id="Layer_1"
                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
@@ -88,15 +88,15 @@
         {{-- Sub --}}
         <div v-if="agentIsOpen">
             <a href="{{route('imports.index')}}" class="flex items-center py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 text-decoration-none hover:text-gray-100">
-                <span class="mx-3">الوارد</span>
+                <span class="mx-3">Import</span>
                 {{-- <span class="mx-2 text-gray-300"></span> --}}
             </a>
             <a href="{{route('cteagents.index')}}" class="flex items-center py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 text-decoration-none hover:text-gray-100">
-                <span class="mx-3">الأنتاج</span>
+                <span class="mx-3">الوارد</span>
                 {{-- <span class="mx-2 text-gray-300"></span> --}}
             </a>
             <a href="{{route('cteshippings.index')}}" class="flex items-center py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 text-decoration-none hover:text-gray-100">
-                <span class="mx-3">العمليات</span>
+                <span class="mx-3">الشحن</span>
                 {{-- <span class="mx-2 text-gray-300"></span> --}}
             </a>
             <a href="{{route('transports.index')}}" class="flex items-center py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 text-decoration-none hover:text-gray-100">

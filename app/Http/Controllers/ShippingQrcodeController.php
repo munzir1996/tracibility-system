@@ -114,13 +114,13 @@ class ShippingQrcodeController extends Controller
         $transport = Transport::where('user_id', auth()->user()->id)->first();
         $shippingQrcode->update([
             'status' => Config::get('constants.delivery.received'),
-            ]);
+        ]);
 
         CteReceiving::create([
             'why' => Config::get('constants.status.receiving'),
             'what' => $shippingQrcode->cteShipping->what,
             'when' => Carbon::now(),
-            'cte_transport_id' => $shippingQrcode->cteShipping->id,
+            'cte_transport_id' => $transport->id,
             'user_id' => auth()->id(),
             'organization_id' => auth()->user()->organization_id,
             'shipping_qrcode_id' => $shippingQrcode->id,

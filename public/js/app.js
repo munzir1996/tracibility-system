@@ -51988,7 +51988,8 @@ var app = new Vue({
     sidebarOpen: false,
     notificationOpen: false,
     dropdownOpen: false,
-    agentIsOpen: false
+    agentIsOpen: false,
+    treadMillIsOpen: false
   },
   beforeCreate: function beforeCreate() {
     this.sidebarOpen = false;
@@ -52007,6 +52008,9 @@ var app = new Vue({
     },
     agentToggle: function agentToggle() {
       this.agentIsOpen = !this.agentIsOpen;
+    },
+    treadMillToggle: function treadMillToggle() {
+      this.treadMillIsOpen = !this.treadMillIsOpen;
     }
   }
 });

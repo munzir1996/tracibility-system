@@ -47,7 +47,7 @@
                             </td>
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
                                 <div class="text-sm leading-5 text-gray-900">
-                                    {{$import->amount}} طن
+                                    {{$import->amount}} شوال
                                 </div>
                             </td>
 
@@ -79,7 +79,7 @@
                                     {{-- <a class="text-indigo-600 hover:text-indigo-900">تعديل</a> --}}
                                     @if ($import->status == Config::get('constants.stock.available'))
                                         <a href="{{route('imports.edit', $import->id)}}" class="px-2 py-2 bg-indigo-600 rounded-md text-white font-medium tracking-wide text-decoration-none hover:bg-indigo-500 ml-1">
-                                            أنتاج
+                                            شحن
                                         </a>
                                     @endif
                                     {{-- <button type="submit" class="px-2 py-1 bg-red-600 rounded-md text-white font-medium tracking-wide hover:bg-red-500 ml-1">

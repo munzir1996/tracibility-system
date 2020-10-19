@@ -52,7 +52,7 @@
                         <div>
                             <label class="block text-right text-gray-700" for="username">
                                 الكمية
-                                <span class="text-red-600">(طن)*</span>
+                                <span class="text-red-600">(شوال)*</span>
                             </label>
                             <input class="form-input w-full mt-2 rounded-md focus:border-indigo-600"
                             type="text" name="quantity" required>

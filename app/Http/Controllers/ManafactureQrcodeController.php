@@ -42,6 +42,7 @@ class ManafactureQrcodeController extends Controller
      */
     public function store(ShippingQrcodeStoreRequest $request, CteAgent $cteAgent)
     {
+
         $request->validated();
 
         $what = [

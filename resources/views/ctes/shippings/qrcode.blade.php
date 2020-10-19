@@ -42,7 +42,7 @@
                     <label class="mb-0" for="">: رقم الدفعة</label>
                 </div>
                 <div class="mb-3">
-                    <p class="inline-flex">{!!$qrcode->cteShipping->cteAgent->cteHarvest->what->quantity!!} طن</p>
+                    <p class="inline-flex">{!!$qrcode->cteShipping->cteAgent->cteHarvest->what->quantity!!} شوال</p>
                     <label class="mb-0" for="">: الكمية</label>
                 </div>
                 <div class="mb-3">
@@ -77,7 +77,7 @@
 </div>
 <!-- left col Harvest -->
 
-{{-- right col Import --}}
+{{-- right col Manafacture --}}
 <div class="flex flex-row w-full">
     <!-- left col -->
 
@@ -88,7 +88,7 @@
     <div class="w-1/5  flex justify-center">
         <div class="relative flex h-full w-1 bg-green-300 items-center justify-center">
             <div class="absolute flex flex-col justify-center h-24 w-24 rounded-full border-2 border-green-300 leading-none text-center z-10 bg-white font-thin">
-                <div>{{$qrcode->cteShipping->cteAgent->cteHarvest->import->when}}</div>
+                <div>{{$qrcode->cteShipping->cteAgent->when}}</div>
             </div>
         </div>
     </div>
@@ -97,30 +97,38 @@
         <div class="flex flex-col w-full rounded-lg shadow bg-white px-4 py-5">
             <div class="text-gray-600 mb-2">
                 <div class="font-bold text-2xl text-right">
-                    الأستلام
+                    {{$qrcode->cteShipping->cteAgent->why}}
                 </div>
             </div>
             <div class="text-gray-600 font-bold text-right">
                 <div class="mb-3">
-                    <p class="inline-flex">{{$qrcode->cteShipping->cteAgent->cteHarvest->import->user->name}}</p>
+                    <p class="inline-flex">{{$qrcode->cteShipping->cteAgent->user->name}}</p>
                     <label class="mb-0" for="">: المستلم</label>
                 </div>
                 <div class="mb-3">
-                    <p class="inline-flex">{{$qrcode->cteShipping->cteAgent->cteHarvest->import->organization->name}}</p>
+                    <p class="inline-flex">{{$qrcode->cteShipping->cteAgent->organization->name}}</p>
                     <label class="mb-0" for="">: الجهة</label>
                 </div>
                 <div class="mb-3">
-                    <p class="inline-flex">{!!$qrcode->cteShipping->cteAgent->cteHarvest->what->quantity!!} طن</p>
+                    <p class="inline-flex">{!!$qrcode->cteShipping->cteAgent->what->gtin!!}</p>
+                    <label class="mb-0" for="">: رقم البند</label>
+                </div>
+                <div class="mb-3">
+                    <p class="inline-flex">{!!$qrcode->cteShipping->cteAgent->what->batch!!}</p>
+                    <label class="mb-0" for="">: رقم الدفعة</label>
+                </div>
+                <div class="mb-3">
+                    <p class="inline-flex">{!!$qrcode->cteShipping->cteAgent->what->quantity!!} شوال</p>
                     <label class="mb-0" for="">: الكمية</label>
                 </div>
                 <div class="mb-3">
                     <span class="relative inline-block px-3 py-1 font-semibold  leading-tight
-                    {{$qrcode->cteShipping->cteAgent->cteHarvest->import->why == Config::get('constants.delivery.received') ? 'text-green-900':''}}
-                    {{$qrcode->cteShipping->cteAgent->cteHarvest->import->why == Config::get('constants.delivery.rejected') ? 'text-red-900':''}}">
+                    {{$qrcode->cteShipping->cteAgent->manafactureQrcode->status == Config::get('constants.delivery.received') ? 'text-green-900':''}}
+                    {{$qrcode->cteShipping->cteAgent->manafactureQrcode->status == Config::get('constants.delivery.rejected') ? 'text-red-900':''}}">
                         <span aria-hidden="" class="absolute inset-0 opacity-50 rounded-full
-                        {{$qrcode->cteShipping->cteAgent->cteHarvest->import->why == Config::get('constants.delivery.received') ? 'bg-green-200':''}}
-                        {{$qrcode->cteShipping->cteAgent->cteHarvest->import->why == Config::get('constants.delivery.rejected') ? 'bg-red-200':''}}"></span>
-                        <span class="relative">{{$qrcode->cteShipping->cteAgent->cteHarvest->import->why}}</span>
+                        {{$qrcode->cteShipping->cteAgent->manafactureQrcode->status == Config::get('constants.delivery.received') ? 'bg-green-200':''}}
+                        {{$qrcode->cteShipping->cteAgent->manafactureQrcode->status == Config::get('constants.delivery.rejected') ? 'bg-red-200':''}}"></span>
+                        <span class="relative">{{$qrcode->cteShipping->cteAgent->manafactureQrcode->status}}</span>
                     </span>
                     <label class="mb-0" for="">: الحالة</label>
                 </div>
@@ -128,9 +136,9 @@
         </div>
     </div>
 </div>
-{{-- right col Import --}}
+{{-- right col Manafacture --}}
 
-{{-- left col Manafacture --}}
+{{-- left col  --}}
 <div class="flex flex-row w-full">
     <!-- left col -->
 
@@ -149,29 +157,48 @@
                         </button>
                     </div>
                     <div class="font-bold text-2xl text-right">
-                        {{$qrcode->cteShipping->cteAgent->why}}
+                        {{$qrcode->cteShipping->why}}
                     </div>
                 </div>
                 <div class="text-gray-600 font-bold text-right">
                     <div class="mb-3">
-                        <p class="inline-flex">{{$qrcode->cteShipping->cteAgent->user->name}}</p>
+                        <p class="inline-flex">{{$qrcode->cteShipping->user->name}}</p>
                         <label class="mb-0" for="">: المنشيء</label>
                     </div>
                     <div class="mb-3">
-                        <p class="inline-flex">{{$qrcode->cteShipping->cteAgent->organization->name}}</p>
+                        <p class="inline-flex">{{$qrcode->cteShipping->organization->name}}</p>
                         <label class="mb-0" for="">: الجهة</label>
                     </div>
                     <div class="mb-3">
-                        <p class="inline-flex">{!!$qrcode->cteShipping->cteAgent->what->gtin!!}</p>
+                        <p class="inline-flex">{{$qrcode->cteShipping->sscc}}</p>
+                        <label class="mb-0" for="">: رقم الشحنة</label>
+                    </div>
+                    <div class="mb-3">
+                        <p class="inline-flex">{!!$qrcode->cteShipping->what->gtin!!}</p>
                         <label class="mb-0" for="">: رقم البند</label>
                     </div>
                     <div class="mb-3">
-                        <p class="inline-flex">{!!$qrcode->cteShipping->cteAgent->what->batch!!}</p>
+                        <p class="inline-flex">{!!$qrcode->cteShipping->what->batch!!}</p>
                         <label class="mb-0" for="">: رقم الدفعة</label>
                     </div>
                     <div class="mb-3">
-                        <p class="inline-flex">{!!$qrcode->cteShipping->cteAgent->what->quantity!!} شوال</p>
+                        <p class="inline-flex">{!!$qrcode->cteShipping->what->quantity!!} شوال</p>
                         <label class="mb-0" for="">: الكمية</label>
+                    </div>
+                    <div class="mb-3">
+                        <span class="relative inline-block px-3 py-1 font-semibold  leading-tight
+                        {{$qrcode->status == Config::get('constants.delivery.received') ? 'text-green-900':''}}
+                        {{$qrcode->status == Config::get('constants.delivery.pending') ? 'text-orange-900':''}}
+                        {{$qrcode->status == Config::get('constants.delivery.rejected') ? 'text-red-900':''}}
+                        {{$qrcode->status == Config::get('constants.delivery.transporting') ? 'text-indigo-900':''}}">
+                            <span aria-hidden="" class="absolute inset-0 opacity-50 rounded-full
+                            {{$qrcode->status == Config::get('constants.delivery.received') ? 'bg-green-200':''}}
+                            {{$qrcode->status == Config::get('constants.delivery.pending') ? 'bg-orange-200':''}}
+                            {{$qrcode->status == Config::get('constants.delivery.rejected') ? 'bg-red-200':''}}
+                            {{$qrcode->status == Config::get('constants.delivery.transporting') ? 'bg-indigo-200':''}}"></span>
+                            <span class="relative">{{$qrcode->status}}</span>
+                        </span>
+                        <label class="mb-0" for="">: الحالة</label>
                     </div>
                 </div>
             </div>
@@ -181,7 +208,7 @@
     <div class="w-1/5  flex justify-center">
         <div class="relative flex h-full w-1 items-center bg-green-300 justify-center">
             <div class="absolute flex flex-col justify-center h-24 w-24 rounded-full border-2 leading-none border-green-300 text-center z-10 bg-white font-thin">
-                <div>{{$qrcode->cteShipping->cteAgent->when}}</div>
+                <div>{{$qrcode->cteShipping->when}}</div>
                 {{-- <div>September</div> --}}
             </div>
         </div>

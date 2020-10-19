@@ -12,9 +12,16 @@ use Carbon\Carbon;
 
 $factory->define(Import::class, function (Faker $faker) {
 
+    $what = [
+        'gtin' => uniqid(),
+        'batch' => uniqid(),
+        'quantity' => $faker->numberBetween($min = 1, $max = 200),
+    ];
+
     $user = factory(User::class)->states('agent')->create();
 
     return [
+        'what' => $what,
         'amount' => $faker->numberBetween($min = 1, $max = 200),
         'status' => Config::get('constants.stock.available'),
         'when' => Carbon::now(),

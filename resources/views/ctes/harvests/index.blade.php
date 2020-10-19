@@ -2,9 +2,9 @@
 
 @section('body')
     <div class="flex justify-between">
-    <h3 class="text-gray-700 text-3xl font-medium">الحصاد</h3>
+    <h3 class="text-gray-700 text-3xl font-medium">المطحنة</h3>
         <a href="{{route('cteharvests.create')}}" class="px-6 py-3 bg-green-600 rounded-md text-white font-medium tracking-wide text-decoration-none hover:bg-green-500 ml-3">
-            أضافة حصاد
+            أضافة إنتاج
         </a>
     </div>
 
@@ -66,7 +66,7 @@
                             </td>
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
                                 <div class="text-sm leading-5 text-gray-900">
-                                    {!!$cteharvest->what->quantity!!} طن
+                                    {!!$cteharvest->what->quantity!!} شوال
                                 </div>
                             </td>
 

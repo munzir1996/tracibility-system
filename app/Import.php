@@ -14,6 +14,20 @@ class Import extends Model
         return $query->where('why', Config::get('constants.delivery.received'));
     }
 
+    protected $casts = [
+        'what' => 'array'
+    ];
+
+    public function getWhatAttribute($value)
+    {
+        return json_decode($value);
+    }
+
+    public function setWhatAttribute($value)
+    {
+        $this->attributes['what'] = json_encode($value, true);
+    }
+
     public function cteHarvest()
     {
         return $this->belongsTo(CteHarvest::class);

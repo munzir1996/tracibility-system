@@ -20,7 +20,7 @@ class CteAgentController extends Controller
      */
     public function index()
     {
-        $cteAgents = CteAgent::latest()->get();
+        $cteAgents = CteAgent::received()->latest()->get();
 
         return view('ctes.agents.index', [
             'cteagents' => $cteAgents,
@@ -116,23 +116,16 @@ class CteAgentController extends Controller
      */
     public function update(Request $request, CteAgent $cteagent)
     {
-        // $request->validate([
-        //     'quantity' => 'required',
-        // ]);
+        // $request->validated();
 
-        // $what = [
-        //     'gtin' => $cteagent->what->gtin,
-        //     'batch' => $cteagent->what->batch,
-        //     'quantity' => $request->quantity,
-        // ];
+        // $import->amount -= $request->quantity;
+        // if ($import->amount == 0) {
+        //     $import->status = Config::get('constants.stock.not_available');
+        // }
+        // $import->save();
 
-        // $cteagent->update([
-        //     'what' => $what,
-        //     'when' => Carbon::now(),
-        //     'why' => Config::get('constants.status.manafacturing'),
-        //     'user_id' => auth()->id(),
-        //     'organization_id' => auth()->user()->organization_id,
-        // ]);
+        // return redirect()->route('imports.index');
+
     }
 
     /**
@@ -149,4 +142,13 @@ class CteAgentController extends Controller
 
         return redirect()->route('cteagents.index');
     }
+
 }
+
+
+
+
+
+
+
+

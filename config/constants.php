@@ -2,8 +2,9 @@
 
 return [
     'status' => [
-        'harvesting' => 'حصاد',
+        'harvesting' => 'المطحنة',
         'manafacturing' => 'التصنيع',
+        'agent' => 'الوكيل',
         'shipping' => 'الشحن',
         'transporting' => 'التوصيل',
         'receiving' => 'أستلام',
@@ -12,7 +13,8 @@ return [
 
     'type' => [
         'harvest' => 'الحصاد',
-        'agent' => 'المطحنة',
+        'treadmill' => 'المطحنة',
+        'agent' => 'الوكيل',
         'bakery' => 'المخبز',
         'transport' => 'النقل',
         'admin' => 'أدمن',
@@ -23,6 +25,7 @@ return [
         'received' => 'تم الأستلام',
         'rejected' => 'مرفوض',
         'transporting' => 'التوصيل',
+        'shipping' => 'تم الشحن',
     ],
 
     'stock' => [

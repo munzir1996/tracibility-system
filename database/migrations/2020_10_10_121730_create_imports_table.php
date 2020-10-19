@@ -16,6 +16,7 @@ class CreateImportsTable extends Migration
     {
         Schema::create('imports', function (Blueprint $table) {
             $table->id();
+            $table->string('what');
             $table->string('amount');
             $table->string('status')->default(Config::get('constants.stock.available'));
             $table->date('when');

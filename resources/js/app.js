@@ -65,7 +65,7 @@ const app = new Vue({
 
         agentToggle(){
             this.agentIsOpen = !this.agentIsOpen
-        }
+        },
 
     },
 
