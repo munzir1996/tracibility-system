@@ -108,6 +108,9 @@ class ShippingQrcodeController extends Controller
 
     }
 
+
+
+
     public function acceptReceive($code)
     {
         $shippingQrcode = ShippingQrcode::where('code', $code)->first();

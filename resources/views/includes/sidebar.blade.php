@@ -87,10 +87,10 @@
         </a>
         {{-- Sub --}}
         <div v-if="agentIsOpen">
-            <a href="{{route('imports.index')}}" class="flex items-center py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 text-decoration-none hover:text-gray-100">
+            {{-- <a href="{{route('imports.index')}}" class="flex items-center py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 text-decoration-none hover:text-gray-100">
                 <span class="mx-3">Import</span>
-                {{-- <span class="mx-2 text-gray-300"></span> --}}
-            </a>
+                <span class="mx-2 text-gray-300"></span>
+            </a> --}}
             <a href="{{route('cteagents.index')}}" class="flex items-center py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 text-decoration-none hover:text-gray-100">
                 <span class="mx-3">الوارد</span>
                 {{-- <span class="mx-2 text-gray-300"></span> --}}
