@@ -35,6 +35,17 @@
         </a>
 
         <a class="flex items-center mt-4 py-2 px-6 bg-opacity-25 text-decoration-none
+        {{Request::is('consumers*')? 'bg-gray-700  text-gray-100': 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100'}}" href="{{route('consumers.index')}}">
+            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
+            </svg>
+
+            <span class="mx-3">المستهلكين</span>
+
+        </a>
+
+        <a class="flex items-center mt-4 py-2 px-6 bg-opacity-25 text-decoration-none
         {{Request::is('organizations*')? 'bg-gray-700  text-gray-100': 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100'}}" href="{{route('organizations.index')}}">
             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
@@ -54,12 +65,13 @@
             <span class="mx-3">المطحنة</span>
         </a>
 
-        <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 text-decoration-none hover:text-gray-100" href="/tables">
+        <a class="flex items-center mt-4 py-2 px-6 hover:bg-opacity-25 text-decoration-none
+        {{Request::is('ctereceivings*')? 'bg-gray-700  text-gray-100': 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100'}}" href="{{route('ctereceivings.index')}}">
             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
             </svg>
 
-            <span class="mx-3">forms</span>
+            <span class="mx-3">المخبز</span>
         </a>
 
         <a @click="agentToggle" class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 text-decoration-none hover:text-gray-100">

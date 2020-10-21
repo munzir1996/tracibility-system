@@ -119,9 +119,18 @@ class ShippingQrcodeController extends Controller
             'status' => Config::get('constants.delivery.received'),
         ]);
 
+        $what = [
+            'gtin' => $shippingQrcode->cteShipping->what->gtin,
+            'batch' => $shippingQrcode->cteShipping->what->batch,
+            'quantity' => $shippingQrcode->cteShipping->what->quantity,
+            'produced' => $shippingQrcode->cteShipping->what->quantity * Config::get('constants.production.amount'),
+            'consumed' => 0,
+            'status' => Config::get('constants.stock.available'),
+        ];
+
         CteReceiving::create([
             'why' => Config::get('constants.status.receiving'),
-            'what' => $shippingQrcode->cteShipping->what,
+            'what' => $what,
             'when' => Carbon::now(),
             'cte_transport_id' => $transport->id,
             'user_id' => auth()->id(),

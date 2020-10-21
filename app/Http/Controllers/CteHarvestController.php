@@ -18,7 +18,7 @@ class CteHarvestController extends Controller
      */
     public function index()
     {
-        $cteHarvests = CteHarvest::latest()->get();
+        $cteHarvests = CteHarvest::organize()->latest()->get();
 
         return view('ctes.harvests.index', [
             'cteharvests' => $cteHarvests,

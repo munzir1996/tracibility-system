@@ -8,6 +8,7 @@ return [
         'shipping' => 'الشحن',
         'transporting' => 'التوصيل',
         'receiving' => 'أستلام',
+        'selling' => 'بيع',
         'return' => 'أعادة',
     ],
 
@@ -31,6 +32,10 @@ return [
     'stock' => [
         'available' => 'متوفر',
         'not_available' => 'غير متوفر',
+    ],
+
+    'production' => [
+        'amount' => 1040,
     ],
 
 ];

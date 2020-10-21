@@ -446,6 +446,14 @@
                         <label class="mb-0" for="">: الكمية</label>
                     </div>
                     <div class="mb-3">
+                        <p class="inline-flex">{!!$qrcode->cteReceiving->what->produced!!} رغيفة</p>
+                        <label class="mb-0" for="">: الكمية المنتجة</label>
+                    </div>
+                    <div class="mb-3">
+                        <p class="inline-flex">{!!$qrcode->cteReceiving->what->consumed!!} رغيفة</p>
+                        <label class="mb-0" for="">: الكمية المستهلكة</label>
+                    </div>
+                    <div class="mb-3">
                         <span class="relative inline-block px-3 py-1 font-semibold  leading-tight
                         {{$qrcode->status == Config::get('constants.delivery.received') ? 'text-green-900':''}}
                         {{$qrcode->status == Config::get('constants.delivery.pending') ? 'text-orange-900':''}}

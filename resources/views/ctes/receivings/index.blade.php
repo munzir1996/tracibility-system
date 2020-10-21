@@ -2,8 +2,8 @@
 
 @section('body')
     <div class="flex justify-between">
-    <h3 class="text-gray-700 text-3xl font-medium">الشحن</h3>
-        {{-- <a href="{{route('cteagents.create')}}" class="px-6 py-3 bg-green-600 rounded-md text-white font-medium tracking-wide text-decoration-none hover:bg-green-500 ml-3">
+    <h3 class="text-gray-700 text-3xl font-medium">المخبز</h3>
+        {{-- <a href="{{route('ctereceivings.create')}}" class="px-6 py-3 bg-green-600 rounded-md text-white font-medium tracking-wide text-decoration-none hover:bg-green-500 ml-3">
             أضافة حصاد
         </a> --}}
     </div>
@@ -22,11 +22,12 @@
                         <tr>
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">#</th>
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">رمز الأستجابة</th>
-                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">المستلم</th>
-                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">رقم البند</th>
+                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">رقم حاوية الشحن</th>
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">رقم الدفعة</th>
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">الكمية</th>
-                            {{-- <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">الجهة</th> --}}
+                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">الكمية المنتجة</th>
+                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">الكمية المستهلكة</th>
+                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">الجهة</th>
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">زمن الأنشاء</th>
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">الحالة</th>
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
@@ -34,72 +35,81 @@
                     </thead>
 
                     <tbody class="bg-white">
-                        @foreach ($cteagents as $cteagent)
+                        @foreach ($ctereceivings as $ctereceiving)
                         <tr class="hover:bg-gray-200 text-right">
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                 <div class="flex items-center">
-
                                     <div class="ml-4">
-                                        <div class="text-sm leading-5 font-medium text-gray-900">{{$cteagent->id}}</div>
+                                        <div class="text-sm leading-5 font-medium text-gray-900">{{$ctereceiving->id}}</div>
                                     </div>
                                 </div>
                             </td>
 
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                {{-- <div class="text-sm leading-5 text-gray-900">{{$cteagent->qrcode}}</div> --}}
-                                <a href="{{route('manafacture.qrcodes.show', $cteagent->manafactureQrcode->code)}}">{{$cteagent->qrcode}}</a>
-                            </td>
-
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                <div class="text-sm leading-5 text-gray-900">{{$cteagent->user->name}}</div>
+                                {{-- <div class="text-sm leading-5 text-gray-900">{{$ctereceiving->qrcode}}</div> --}}
+                                <a href="{{route('shipping.qrcodes.show', $ctereceiving->shippingQrcode->code)}}">
+                                    {{$ctereceiving->qrcode}}
+                                </a>
                             </td>
 
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
                                 <div class="text-sm leading-5 text-gray-900">
-                                    {!!$cteagent->what->gtin!!}
+                                    {!!$ctereceiving->what->gtin!!}
                                 </div>
                             </td>
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
                                 <div class="text-sm leading-5 text-gray-900">
-                                    {!!$cteagent->what->batch!!}
+                                    {!!$ctereceiving->what->batch!!}
                                 </div>
                             </td>
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
                                 <div class="text-sm leading-5 text-gray-900">
-                                    {{$cteagent->amount}} شوال
-                                    {{-- {!!$cteagent->what->quantity!!} شوال --}}
+                                    {!!$ctereceiving->what->quantity!!} شوال
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                                <div class="text-sm leading-5 text-gray-900">
+                                    {!!$ctereceiving->what->produced!!} رغيفة
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                                <div class="text-sm leading-5 text-gray-900">
+                                    {!!$ctereceiving->what->consumed!!} رغيفة
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                                <div class="text-sm leading-5 text-gray-900">
+                                    {{$ctereceiving->organization->name}}
                                 </div>
                             </td>
 
-                            {{-- <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
-                                <div class="text-sm leading-5 text-gray-900">
-                                    {{$cteagent->organization->name}}
-                                </div>
-                            </td> --}}
-
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
                                 <div class="text-sm leading-5 text-gray-900">
-                                    {{$cteagent->when}}
+                                    {{$ctereceiving->when}}
                                 </div>
                             </td>
 
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
                                 <span class="relative inline-block px-3 py-1 font-semibold  leading-tight
-                                {{$cteagent->manafactureQrcode->status == Config::get('constants.stock.available') ? 'text-green-900':''}}
-                                {{$cteagent->manafactureQrcode->status == Config::get('constants.stock.not_available') ? 'text-red-900':''}}">
+                                {{$ctereceiving->shippingQrcode->status == Config::get('constants.delivery.received') ? 'text-green-900':''}}
+                                {{$ctereceiving->shippingQrcode->status == Config::get('constants.delivery.pending') ? 'text-orange-900':''}}
+                                {{$ctereceiving->shippingQrcode->status == Config::get('constants.delivery.transporting') ? 'text-indigo-900':''}}
+                                {{$ctereceiving->shippingQrcode->status == Config::get('constants.delivery.rejected') ? 'text-red-900':''}}">
                                     <span aria-hidden="" class="absolute inset-0 opacity-50 rounded-full
-                                    {{$cteagent->manafactureQrcode->status == Config::get('constants.stock.available') ? 'bg-green-200':''}}
-                                    {{$cteagent->manafactureQrcode->status == Config::get('constants.stock.not_available') ? 'bg-red-200':''}}"></span>
-                                    <span class="relative">{{$cteagent->manafactureQrcode->status}}</span>
+                                    {{$ctereceiving->shippingQrcode->status == Config::get('constants.delivery.received') ? 'bg-green-200':''}}
+                                    {{$ctereceiving->shippingQrcode->status == Config::get('constants.delivery.pending') ? 'bg-orange-200':''}}
+                                    {{$ctereceiving->shippingQrcode->status == Config::get('constants.delivery.transporting') ? 'bg-indigo-200':''}}
+                                    {{$ctereceiving->shippingQrcode->status == Config::get('constants.delivery.rejected') ? 'bg-red-200':''}}"></span>
+                                    <span class="relative">{{$ctereceiving->shippingQrcode->status}}</span>
                                 </span>
                             </td>
 
                             <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
-                                <form action="{{route('cteagents.destroy', $cteagent->id)}}" method="post">
+                                <form action="{{route('ctereceivings.destroy', $ctereceiving->id)}}" method="post">
                                     @csrf {{ method_field('DELETE') }}
 
                                     {{-- <a class="text-indigo-600 hover:text-indigo-900">تعديل</a> --}}
-                                    {{-- <a href="{{route('cteagents.edit', $cteagent->id)}}" class="px-2 py-2 bg-indigo-600 rounded-md text-white font-medium tracking-wide text-decoration-none hover:bg-indigo-500 ml-1">
+                                    {{-- <a href="{{route('ctereceivings.edit', $ctereceiving->id)}}" class="px-2 py-2 bg-indigo-600 rounded-md text-white font-medium tracking-wide text-decoration-none hover:bg-indigo-500 ml-1">
                                         تعديل
                                     </a> --}}
                                     <button type="submit" class="px-2 py-1 bg-red-600 rounded-md text-white font-medium tracking-wide hover:bg-red-500 ml-1">

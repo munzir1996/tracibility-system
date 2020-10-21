@@ -36,8 +36,6 @@ Route::prefix('/')->middleware('auth')->group(function () {
     Route::get('manafacture/qrcode/{code}', 'ManafactureQrcodeController@show')->name('manafacture.qrcodes.show');
     Route::post('manafacture/qrcode/shippings/{cteAgent}', 'ManafactureQrcodeController@store')->name('manafacture.qrcodes.store');
 
-    Route::resource('imports', 'ImportController'); //Delete
-
     // Route::post('cteshippings/{cteAgent}', 'CteShippingController@store')->name('cteshippings.store');
     Route::resource('cteshippings', 'CteShippingController');
     Route::get('shipping/qrcode/{code}', 'ShippingQrcodeController@show')->name('shipping.qrcodes.show');
@@ -45,6 +43,11 @@ Route::prefix('/')->middleware('auth')->group(function () {
     Route::get('shipping/qrcode/accept/receive/{code}', 'ShippingQrcodeController@acceptReceive')->name('shipping.qrcodes.accept.receive');
 
     Route::resource('transports', 'TransportController');
+    Route::resource('consumers', 'ConsumerController');
+    Route::get('selling/qrcode/{code}', 'SellingQrcodeController@show')->name('selling.qrcodes.show');
+    Route::put('selling/qrcode/{cteReceiving}/{code}', 'SellingQrcodeController@sell')->name('selling.qrcodes.sell');
+
+    Route::resource('ctereceivings', 'CteReceivingController');
 
 });
 

@@ -3,20 +3,16 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Config;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
-class Import extends Model
+class CteSelling extends Model
 {
-    protected $guarded = [];
-    protected $with = ['cteHarvest', 'user', 'organization'];
 
-    public function scopeReceived($query){
-        return $query->where('why', Config::get('constants.delivery.received'));
-    }
+    protected $guarded = [];
 
     protected $casts = [
         'what' => 'array'
-    ];
+   ];
 
     public function getWhatAttribute($value)
     {
@@ -28,12 +24,13 @@ class Import extends Model
         $this->attributes['what'] = json_encode($value, true);
     }
 
-    public function cteHarvest()
+    public function getQrcodeAttribute()
     {
-        return $this->belongsTo(CteHarvest::class);
+        return QrCode::generate(route('harvest.qrcodes.show', $this->harvestQrcode->code));
+
     }
 
-    public function user()
+    public function consumer()
     {
         return $this->belongsTo(User::class);
     }
@@ -42,5 +39,4 @@ class Import extends Model
     {
         return $this->belongsTo(Organization::class);
     }
-
 }

@@ -16,6 +16,10 @@ class CteAgent extends Model
         'what' => 'array',
    ];
 
+    public function scopeOrganize($query){
+        return $query->where('organization_id', auth()->user()->organization_id);
+    }
+
     public function scopeReceived($query){
         return $query->whereHas('manafactureQrcode', function (Builder $query) {
             $query->whereIn('status', [Config::get('constants.stock.available'), Config::get('constants.stock.not_available')]);

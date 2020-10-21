@@ -26,7 +26,6 @@
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">رقم البند</th>
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">رقم الدفعة</th>
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">الكمية</th>
-                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">الجهة</th>
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">زمن الأنشاء</th>
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">الحالة</th>
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
@@ -67,12 +66,6 @@
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
                                 <div class="text-sm leading-5 text-gray-900">
                                     {!!$cteharvest->what->quantity!!} شوال
-                                </div>
-                            </td>
-
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
-                                <div class="text-sm leading-5 text-gray-900">
-                                    {{$cteharvest->organization->name}}
                                 </div>
                             </td>
 
