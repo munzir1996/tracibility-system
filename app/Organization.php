@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Config;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class Organization extends Model
 {
@@ -24,6 +25,11 @@ class Organization extends Model
             return $query->where('type', Config::get('constants.type.transport'));
         }
 
+    }
+
+    public function getQrcodeAttribute()
+    {
+        return QrCode::generate(route('organization.qrcode', $this->id));
     }
 
     public function users()

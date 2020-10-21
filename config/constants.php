@@ -7,7 +7,7 @@ return [
         'agent' => 'الوكيل',
         'shipping' => 'الشحن',
         'transporting' => 'التوصيل',
-        'receiving' => 'أستلام',
+        'receiving' => 'المخبز',
         'selling' => 'بيع',
         'return' => 'أعادة',
     ],

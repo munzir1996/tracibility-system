@@ -9,6 +9,10 @@ class CteReceiving extends Model
 {
     protected $guarded = [];
 
+    public function scopeOrganize($query){
+        return $query->where('organization_id', auth()->user()->organization_id);
+    }
+
     public function getWhatAttribute($value)
     {
         return json_decode($value);

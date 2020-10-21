@@ -20,7 +20,7 @@ class CteShippingController extends Controller
     public function index()
     {
 
-        $cteShippings = CteShipping::latest()->get();
+        $cteShippings = CteShipping::organize()->latest()->get();
 
         return view('ctes.shippings.index', [
             'cteshippings' => $cteShippings,

@@ -2,7 +2,7 @@
 
 @section('body')
 
-    <h3 class="text-right text-3xl text-indigo-500 font-bold">الحصاد /<span class="text-gray-700"> أنشاء</span></h2>
+    <h3 class="text-right text-3xl text-indigo-500 font-bold">المطحنة /<span class="text-gray-700"> أنشاء</span></h2>
 
     <div class="mt-4">
 
@@ -44,7 +44,7 @@
             <div class="mt-4">
 
             <div class="p-6 bg-white rounded-md shadow-md">
-                <h2 class="text-right text-lg text-gray-700 font-semibold capitalize">بيانات الحصاد</h2>
+                <h2 class="text-right text-lg text-gray-700 font-semibold capitalize">بيانات الإنتاج</h2>
 
                 <form action="{{route('cteharvests.store')}}" method="POST">
                     @csrf

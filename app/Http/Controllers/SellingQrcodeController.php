@@ -37,7 +37,7 @@ class SellingQrcodeController extends Controller
         $request->validated();
         $consumer = Consumer::where('code', $code)->first();
 
-        $what = [
+        $whatCteReceiving = [
             'gtin' => $cteReceiving->what->gtin,
             'batch' => $cteReceiving->what->batch,
             'quantity' => $cteReceiving->what->quantity,
@@ -47,21 +47,27 @@ class SellingQrcodeController extends Controller
         ];
 
 
-        if ($cteReceiving->what->produced == $what['consumed']) {
-            $what['status'] = Config::get('constants.stock.not_available');
+        if ($cteReceiving->what->produced == $whatCteReceiving['consumed']) {
+            $whatCteReceiving['status'] = Config::get('constants.stock.not_available');
         }
 
         $cteReceiving->update([
-            'what' => $what,
+            'what' => $whatCteReceiving,
         ]);
 
+        $whatCteSelling = [
+            'gtin' => $cteReceiving->what->gtin,
+            'batch' => $cteReceiving->what->batch,
+            'quantity' => $cteReceiving->what->quantity,
+        ];
+
         CteSelling::create([
-            'what' => $what,
+            'what' => $whatCteSelling,
             'why' => Config::get('constants.status.selling'),
             'when' => Carbon::now(),
             'cte_receiving_id' => $cteReceiving->id,
             'consumer_id' => $consumer->id,
-            'organization_id' =>    auth()->user()->organization->id,
+            'organization_id' =>  auth()->user()->organization->id,
         ]);
 
         session()->flash('success', 'تمت عملية البيع بنجاح');

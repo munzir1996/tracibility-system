@@ -21,6 +21,7 @@
                     <thead>
                         <tr>
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-right text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">#</th>
+                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-right text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">رمز الأستجابة</th>
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-right text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">رقم الموقع</th>
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-right text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">الأسم</th>
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-right text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">النوع</th>
@@ -38,6 +39,15 @@
                                         <div class="text-sm leading-5 font-medium text-gray-900">{{$organization->id}}</div>
                                     </div>
                                 </div>
+                            </td>
+
+                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                @if ($organization->type == Config::get('constants.type.bakery'))
+                                    <a href="{{route('organization.qrcode', $organization->id)}}">
+                                        {{$organization->qrcode}}
+                                    </a>
+                                    <div class="text-sm leading-5 text-gray-900"></div>
+                                @endif
                             </td>
 
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">

@@ -32,7 +32,7 @@ class CteSelling extends Model
 
     public function consumer()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Consumer::class);
     }
 
     public function organization()

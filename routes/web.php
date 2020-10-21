@@ -13,10 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-
 Auth::routes();
-
 
 Route::prefix('/')->middleware('auth')->group(function () {
 
@@ -26,6 +23,7 @@ Route::prefix('/')->middleware('auth')->group(function () {
 
     Route::get('get/organizations/{permission}', 'OrganizationController@getOrganization')->name('organization.get');
     Route::resource('organizations', 'OrganizationController');
+    Route::get('organization/qrcode/{organization}', 'OrganizationQrcodeController@show')->name('organization.qrcode');
 
     Route::resource('cteharvests', 'CteHarvestController');
     Route::get('harvest/qrcode/{code}', 'HarvestQrcodeController@show')->name('harvest.qrcodes.show');
@@ -36,7 +34,6 @@ Route::prefix('/')->middleware('auth')->group(function () {
     Route::get('manafacture/qrcode/{code}', 'ManafactureQrcodeController@show')->name('manafacture.qrcodes.show');
     Route::post('manafacture/qrcode/shippings/{cteAgent}', 'ManafactureQrcodeController@store')->name('manafacture.qrcodes.store');
 
-    // Route::post('cteshippings/{cteAgent}', 'CteShippingController@store')->name('cteshippings.store');
     Route::resource('cteshippings', 'CteShippingController');
     Route::get('shipping/qrcode/{code}', 'ShippingQrcodeController@show')->name('shipping.qrcodes.show');
     Route::get('shipping/qrcode/accept/transport/{code}', 'ShippingQrcodeController@acceptTransport')->name('shipping.qrcodes.accept.transport');
@@ -54,5 +51,7 @@ Route::prefix('/')->middleware('auth')->group(function () {
 
 
 // Route::get('/home', 'HomeController@index')->name('home');
+
+
 
 
