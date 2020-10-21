@@ -24,6 +24,7 @@ Route::prefix('/')->middleware('auth')->group(function () {
     Route::get('get/organizations/{permission}', 'OrganizationController@getOrganization')->name('organization.get');
     Route::resource('organizations', 'OrganizationController');
     Route::get('organization/qrcode/{organization}', 'OrganizationQrcodeController@show')->name('organization.qrcode');
+    Route::get('organization/qrcode/selling/{cteReceiving}', 'OrganizationQrcodeController@selling')->name('organization.qrcode.selling');
 
     Route::resource('cteharvests', 'CteHarvestController');
     Route::get('harvest/qrcode/{code}', 'HarvestQrcodeController@show')->name('harvest.qrcodes.show');

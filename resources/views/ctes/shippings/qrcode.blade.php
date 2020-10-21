@@ -90,7 +90,7 @@
         <div class="flex flex-col w-full rounded-lg shadow bg-white px-4 py-5">
             <div class="text-gray-600 mb-2">
                 <div class="font-bold text-2xl text-right">
-                    إستلام {{$qrcode->cteShipping->cteAgent->why}}
+                    {{$qrcode->cteShipping->cteAgent->why}}
                 </div>
             </div>
             <div class="text-gray-600 font-bold text-right">

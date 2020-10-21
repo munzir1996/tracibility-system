@@ -58,7 +58,7 @@ class SellingQrcodeController extends Controller
         $whatCteSelling = [
             'gtin' => $cteReceiving->what->gtin,
             'batch' => $cteReceiving->what->batch,
-            'quantity' => $cteReceiving->what->quantity,
+            'quantity' => $request->consumed,
         ];
 
         CteSelling::create([
