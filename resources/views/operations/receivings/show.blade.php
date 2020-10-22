@@ -2,7 +2,7 @@
 
 @section('body')
     <div class="flex justify-between">
-    <h3 class="text-right text-3xl text-indigo-500 font-bold">الإستهلاك /<span class="text-gray-700"> المخبز</span></h2>
+    <h3 class="text-right text-3xl text-indigo-500 font-bold">العمليات / المخابز / <span class="text-gray-700"> المخبز</span></h2>
         {{-- <a href="{{route('ctesellings.create')}}" class="px-6 py-3 bg-green-600 rounded-md text-white font-medium tracking-wide text-decoration-none hover:bg-green-500 ml-3">
             أضافة حصاد
         </a> --}}

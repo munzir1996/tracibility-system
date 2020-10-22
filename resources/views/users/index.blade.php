@@ -72,7 +72,6 @@
                                 <form action="{{route('users.destroy', $user->id)}}" method="post">
                                     @csrf {{ method_field('DELETE') }}
 
-                                    {{-- <a class="text-indigo-600 hover:text-indigo-900">تعديل</a> --}}
                                     <a href="{{route('users.edit', $user->id)}}" class="px-2 py-2 bg-indigo-600 rounded-md text-white font-medium tracking-wide text-decoration-none hover:bg-indigo-500 ml-1">
                                         تعديل
                                     </a>

@@ -2,10 +2,11 @@
 
 @section('body')
     <div class="flex justify-between">
-    <h3 class="text-right text-3xl text-indigo-500 font-bold">الوكيل /<span class="text-gray-700"> العمليات</span></h2>
+    <h3 class="text-right text-3xl text-indigo-500 font-bold">العمليات /<span class="text-gray-700"> المخبز</span></h2>
 
-    <h3 class="text-gray-700 text-3xl font-medium"></h3>
-
+        {{-- <a href="{{route('ctereceivings.create')}}" class="px-6 py-3 bg-green-600 rounded-md text-white font-medium tracking-wide text-decoration-none hover:bg-green-500 ml-3">
+            أضافة حصاد
+        </a> --}}
     </div>
 
     <div class="mt-4">
@@ -22,12 +23,13 @@
                         <tr>
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">#</th>
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">رمز الأستجابة</th>
-                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">المنشيء</th>
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">رقم حاوية الشحن</th>
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">رقم البند</th>
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">رقم الدفعة</th>
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">الكمية</th>
-                            {{-- <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">الجهة</th> --}}
+                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">الكمية المنتجة</th>
+                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">الكمية المستهلكة</th>
+                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">المخبز</th>
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">زمن الأنشاء</th>
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">الحالة</th>
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
@@ -35,74 +37,84 @@
                     </thead>
 
                     <tbody class="bg-white">
-                        @foreach ($cteshippings as $cteshipping)
+                        @foreach ($ctereceivings as $ctereceiving)
                         <tr class="hover:bg-gray-200 text-right">
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                 <div class="flex items-center">
-
                                     <div class="ml-4">
-                                        <div class="text-sm leading-5 font-medium text-gray-900">{{$cteshipping->id}}</div>
+                                        <div class="text-sm leading-5 font-medium text-gray-900">{{$ctereceiving->id}}</div>
                                     </div>
                                 </div>
                             </td>
 
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                {{-- <div class="text-sm leading-5 text-gray-900">{{$cteshipping->qrcode}}</div> --}}
-                                <a href="{{route('shipping.qrcodes.show', $cteshipping->shippingQrcode->code)}}">
-                                    {{$cteshipping->qrcode}}
+                                {{-- <div class="text-sm leading-5 text-gray-900">{{$ctereceiving->qrcode}}</div> --}}
+                                <a href="{{route('shipping.qrcodes.show', $ctereceiving->shippingQrcode->code)}}">
+                                    {{$ctereceiving->qrcode}}
                                 </a>
                             </td>
 
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                <div class="text-sm leading-5 text-gray-900">{{$cteshipping->user->name}}</div>
-                            </td>
-
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
                                 <div class="text-sm leading-5 text-gray-900">
-                                    {{$cteshipping->sscc}}
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
-                                <div class="text-sm leading-5 text-gray-900">
-                                    {!!$cteshipping->what->gtin!!}
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
-                                <div class="text-sm leading-5 text-gray-900">
-                                    {!!$cteshipping->what->batch!!}
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
-                                <div class="text-sm leading-5 text-gray-900">
-                                    {!!$cteshipping->what->quantity!!} شوال
+                                    {{$ctereceiving->cteTransport->cteShipping->sscc}}
                                 </div>
                             </td>
 
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
                                 <div class="text-sm leading-5 text-gray-900">
-                                    {{$cteshipping->when}}
+                                    {!!$ctereceiving->what->gtin!!}
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                                <div class="text-sm leading-5 text-gray-900">
+                                    {!!$ctereceiving->what->batch!!}
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                                <div class="text-sm leading-5 text-gray-900">
+                                    {!!$ctereceiving->what->quantity!!} شوال
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                                <div class="text-sm leading-5 text-gray-900">
+                                    {!!$ctereceiving->what->produced!!} رغيفة
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                                <div class="text-sm leading-5 text-gray-900">
+                                    {!!$ctereceiving->what->consumed!!} رغيفة
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                                <div class="text-sm leading-5 text-gray-900">
+                                    {{$ctereceiving->organization->name}}
+                                </div>
+                            </td>
+
+                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                                <div class="text-sm leading-5 text-gray-900">
+                                    {{$ctereceiving->when}}
                                 </div>
                             </td>
 
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
                                 <span class="relative inline-block px-3 py-1 font-semibold  leading-tight
-                                {{$cteshipping->shippingQrcode->status == Config::get('constants.delivery.received') ? 'text-green-900':''}}
-                                {{$cteshipping->shippingQrcode->status == Config::get('constants.delivery.pending') ? 'text-orange-900':''}}
-                                {{$cteshipping->shippingQrcode->status == Config::get('constants.delivery.transporting') ? 'text-indigo-900':''}}
-                                {{$cteshipping->shippingQrcode->status == Config::get('constants.delivery.rejected') ? 'text-red-900':''}}">
+                                {{$ctereceiving->what->status == Config::get('constants.stock.available') ? 'text-green-900':''}}
+                                {{$ctereceiving->what->status == Config::get('constants.stock.not_available') ? 'text-red-900':''}}">
                                     <span aria-hidden="" class="absolute inset-0 opacity-50 rounded-full
-                                    {{$cteshipping->shippingQrcode->status == Config::get('constants.delivery.received') ? 'bg-green-200':''}}
-                                    {{$cteshipping->shippingQrcode->status == Config::get('constants.delivery.pending') ? 'bg-orange-200':''}}
-                                    {{$cteshipping->shippingQrcode->status == Config::get('constants.delivery.transporting') ? 'bg-indigo-200':''}}
-                                    {{$cteshipping->shippingQrcode->status == Config::get('constants.delivery.rejected') ? 'bg-red-200':''}}"></span>
-                                    <span class="relative">{{$cteshipping->shippingQrcode->status}}</span>
+                                    {{$ctereceiving->what->status == Config::get('constants.stock.available') ? 'bg-green-200':''}}
+                                    {{$ctereceiving->what->status == Config::get('constants.stock.not_available') ? 'bg-red-200':''}}"></span>
+                                    <span class="relative">{{$ctereceiving->what->status}}</span>
                                 </span>
                             </td>
 
                             <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
-                                <form action="{{route('cteshippings.destroy', $cteshipping->id)}}" method="post">
+                                <form action="{{route('operation.receiving.delete', $ctereceiving->id)}}" method="post">
                                     @csrf {{ method_field('DELETE') }}
 
+                                    <a href="{{route('operation.receiving.selling', $ctereceiving->id)}}" class="px-2 py-2 bg-gray-900 rounded-md text-white font-medium tracking-wide text-decoration-none hover:bg-gray-700 ml-1">
+                                        الإستهلاك
+                                    </a>
                                     <button type="submit" class="px-2 py-1 bg-red-600 rounded-md text-white font-medium tracking-wide hover:bg-red-500 ml-1">
                                         حذف
                                     </button>

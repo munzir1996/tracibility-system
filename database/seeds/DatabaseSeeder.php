@@ -41,5 +41,6 @@ class DatabaseSeeder extends Seeder
 
         $user->givePermissionTo('super-admin');
 
+        // $this->call(ComponentsSeeder::class);
     }
 }

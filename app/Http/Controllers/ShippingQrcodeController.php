@@ -108,6 +108,32 @@ class ShippingQrcodeController extends Controller
 
     }
 
+    public function rejectTransport($code)
+    {
+
+        $shippingQrcode = ShippingQrcode::where('code', $code)->first();
+        $transport = Transport::where('user_id', auth()->user()->id)->first();
+
+        $shippingQrcode->update([
+            'status' => Config::get('constants.delivery.rejected'),
+        ]);
+
+        CteTransport::create([
+            'why' => Config::get('constants.status.transporting'),
+            'what_truck' => $transport->giai,
+            'when' => Carbon::now(),
+            'cte_shipping_id' => $shippingQrcode->cteShipping->id,
+            'user_id' => auth()->id(),
+            'organization_id' => auth()->user()->organization_id,
+            'shipping_qrcode_id' => $shippingQrcode->id,
+        ]);
+
+        session()->flash('success', 'تم الأضافة بنجاح');
+
+        return redirect()->route('shipping.qrcodes.show', $code);
+
+    }
+
 
 
 
@@ -126,6 +152,38 @@ class ShippingQrcodeController extends Controller
             'produced' => $shippingQrcode->cteShipping->what->quantity * Config::get('constants.production.amount'),
             'consumed' => 0,
             'status' => Config::get('constants.stock.available'),
+        ];
+
+        CteReceiving::create([
+            'why' => Config::get('constants.status.receiving'),
+            'what' => $what,
+            'when' => Carbon::now(),
+            'cte_transport_id' => $transport->id,
+            'user_id' => auth()->id(),
+            'organization_id' => auth()->user()->organization_id,
+            'shipping_qrcode_id' => $shippingQrcode->id,
+        ]);
+
+        session()->flash('success', 'تم الأضافة بنجاح');
+
+        return redirect()->route('shipping.qrcodes.show', $code);
+    }
+
+    public function rejectReceive($code)
+    {
+        $shippingQrcode = ShippingQrcode::where('code', $code)->first();
+        $transport = Transport::where('user_id', auth()->user()->id)->first();
+        $shippingQrcode->update([
+            'status' => Config::get('constants.delivery.rejected'),
+        ]);
+
+        $what = [
+            'gtin' => $shippingQrcode->cteShipping->what->gtin,
+            'batch' => $shippingQrcode->cteShipping->what->batch,
+            'quantity' => $shippingQrcode->cteShipping->what->quantity,
+            'produced' => 0,
+            'consumed' => 0,
+            'status' => Config::get('constants.stock.not_available'),
         ];
 
         CteReceiving::create([

@@ -41,6 +41,7 @@ const app = new Vue({
         notificationOpen: false,
         dropdownOpen: false,
         agentIsOpen: false,
+        operationIsOpen: false,
     },
 
     beforeCreate(){
@@ -65,6 +66,10 @@ const app = new Vue({
 
         agentToggle(){
             this.agentIsOpen = !this.agentIsOpen
+        },
+
+        operationToggle(){
+            this.operationIsOpen = !this.operationIsOpen
         },
 
     },

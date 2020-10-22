@@ -2,7 +2,7 @@
 
 @section('body')
     <div class="flex justify-between">
-    <h3 class="text-right text-3xl text-indigo-500 font-bold">الوكيل /<span class="text-gray-700"> العمليات</span></h2>
+    <h3 class="text-right text-3xl text-indigo-500 font-bold">العمليات /<span class="text-gray-700">  الوكيل</span></h2>
 
     <h3 class="text-gray-700 text-3xl font-medium"></h3>
 
@@ -27,7 +27,7 @@
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">رقم البند</th>
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">رقم الدفعة</th>
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">الكمية</th>
-                            {{-- <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">الجهة</th> --}}
+                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">الوكيل</th>
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">زمن الأنشاء</th>
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">الحالة</th>
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
@@ -80,6 +80,12 @@
 
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
                                 <div class="text-sm leading-5 text-gray-900">
+                                    {{$cteshipping->organization->name}}
+                                </div>
+                            </td>
+
+                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                                <div class="text-sm leading-5 text-gray-900">
                                     {{$cteshipping->when}}
                                 </div>
                             </td>
@@ -100,7 +106,7 @@
                             </td>
 
                             <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
-                                <form action="{{route('cteshippings.destroy', $cteshipping->id)}}" method="post">
+                                <form action="{{route('operation.shipping.delete', $cteshipping->id)}}" method="post">
                                     @csrf {{ method_field('DELETE') }}
 
                                     <button type="submit" class="px-2 py-1 bg-red-600 rounded-md text-white font-medium tracking-wide hover:bg-red-500 ml-1">

@@ -216,11 +216,6 @@
     </div>
     <!--line column-->
     <div class="w-1/5  flex justify-center">
-        {{-- <div class="relative flex h-full w-1 bg-green-300 items-center justify-center">
-            <div class="absolute flex flex-col justify-center h-24 w-24 rounded-full border-2 border-green-300 leading-none text-center z-10 bg-white font-thin">
-                <div>{{$qrcode->cteShipping->when}}</div>
-            </div>
-        </div> --}}
     </div>
     <!--right column-->
     <div class="w-2/5 px-2 py-10 ">
@@ -233,7 +228,9 @@
             <div class="text-gray-600 font-bold text-right">
 
                 <div class="flex justify-center mt-4">
-                    {{-- <a href="{{route('harvest.qrcodes.reject', $qrcode->id)}}" class="px-4 py-2 mx-1 bg-red-600 text-white rounded-md hover:bg-red-500 focus:outline-none focus:bg-red-700">رفض</a> --}}
+                    <a href="{{route('shipping.qrcodes.reject.transport', $qrcode->code)}}" class="px-4 py-2 mx-1 bg-red-600 text-white rounded-md hover:bg-red-500 focus:outline-none focus:bg-red-700">
+                        رفض
+                    </a>
                     <a href="{{route('shipping.qrcodes.accept.transport', $qrcode->code)}}" class="px-4 py-2 mx-1 bg-green-600 text-white rounded-md hover:bg-green-500 focus:outline-none focus:bg-green-700 text-decoration-none">
                         قبول
                     </a>
@@ -247,7 +244,9 @@
 @endif
 
 
-@if ($qrcode->status == Config::get('constants.delivery.transporting') || $qrcode->status == Config::get('constants.delivery.received'))
+@if ($qrcode->status == Config::get('constants.delivery.transporting') || $qrcode->status == Config::get('constants.delivery.received') || $qrcode->status == Config::get('constants.delivery.rejected'))
+@if (!empty($qrcode->cteTransport))
+
 {{-- right col Transport --}}
 <div class="flex flex-row w-full">
     <!-- left col -->
@@ -317,6 +316,7 @@
 </div>
 {{-- right col Transport --}}
 @endif
+@endif
 
 
 
@@ -340,7 +340,9 @@
                 <div class="text-gray-600 font-bold text-right">
 
                     <div class="flex justify-center mt-4">
-                        {{-- <a href="{{route('harvest.qrcodes.reject', $qrcode->id)}}" class="px-4 py-2 mx-1 bg-red-600 text-white rounded-md hover:bg-red-500 focus:outline-none focus:bg-red-700">رفض</a> --}}
+                        <a href="{{route('shipping.qrcodes.reject.receive', $qrcode->code)}}" class="px-4 py-2 mx-1 bg-red-600 text-white rounded-md hover:bg-red-500 focus:outline-none focus:bg-red-700">
+                            رفض
+                        </a>
                         <a href="{{route('shipping.qrcodes.accept.receive', $qrcode->code)}}" class="px-4 py-2 mx-1 bg-green-600 text-white rounded-md hover:bg-green-500 focus:outline-none focus:bg-green-700 text-decoration-none">
                             قبول
                         </a>
@@ -352,12 +354,6 @@
     </div>
     <!--line column-->
     <div class="w-1/5  flex justify-center">
-        {{-- <div class="relative flex h-full w-1 items-center bg-green-300 justify-center">
-            <div class="absolute flex flex-col justify-center h-24 w-24 rounded-full border-2 leading-none border-green-300 text-center z-10 bg-white font-thin">
-                <div>{{$qrcode->cteShipping->when}}</div>
-                <div>September</div>
-            </div>
-        </div> --}}
     </div>
     <!--right column-->
     <div class="w-2/5 px-2 py-10 ">
@@ -368,14 +364,8 @@
 @endif
 
 
-
-
-
-
-
-
-
-@if ($qrcode->status == Config::get('constants.delivery.received'))
+@if ($qrcode->status == Config::get('constants.delivery.received') || $qrcode->status == Config::get('constants.delivery.rejected'))
+@if (!empty($qrcode->cteReceiving))
 
 {{-- left col Shipping --}}
 <div class="flex flex-row w-full">
@@ -459,6 +449,7 @@
     </div>
 </div>
 {{-- left col shipping --}}
+@endif
 @endif
 
 

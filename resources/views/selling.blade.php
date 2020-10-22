@@ -1,14 +1,14 @@
 @extends('layouts.master')
 
 @section('body')
-    <div class="flex justify-between">
-    <h3 class="text-right text-3xl text-indigo-500 font-bold">الإستهلاك /<span class="text-gray-700"> المخبز</span></h2>
-        {{-- <a href="{{route('ctesellings.create')}}" class="px-6 py-3 bg-green-600 rounded-md text-white font-medium tracking-wide text-decoration-none hover:bg-green-500 ml-3">
-            أضافة حصاد
-        </a> --}}
-    </div>
+    <h3 class="text-right text-3xl text-indigo-500 font-bold">الشحنة /<span class="text-gray-700"> الإستهلاك</span></h2>
+    {{-- <h3 class="text-gray-700 text-3xl font-medium text-right">لوحة التحكم</h3> --}}
 
     <div class="mt-4">
+        <div class="flex flex-wrap -mx-6">
+
+        </div>
+    </div>
 
     <div class="mt-8">
 
@@ -75,7 +75,6 @@
         </div>
 
     </div>
-</div>
 @endsection
 
 

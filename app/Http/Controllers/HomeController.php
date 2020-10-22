@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\CteReceiving;
+use App\CteSelling;
+use App\CteShipping;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,12 +27,22 @@ class HomeController extends Controller
     public function index()
     {
 
-        session()->flash('toast', [
-            'type' => 'success',
-            'message' => 'تم أضافة المستخدم'
+        $cteReceivings = CteReceiving::latest()->get();
+
+        return view('index', [
+            'ctereceivings' => $cteReceivings,
+        ]);
+    }
+
+    public function selling(CteReceiving $ctereceiving)
+    {
+
+        $cteSellings = CteSelling::where('cte_receiving_id', $ctereceiving->id)->latest()->get();
+
+        return view('selling', [
+            'ctesellings' => $cteSellings,
         ]);
 
-        // return redirect('/')->with('success','Item created successfully!');
-        return view('index')->with('success','Item created successfully!');
     }
+
 }
