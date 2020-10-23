@@ -126,10 +126,13 @@
                 <div class="mb-3">
                     <span class="relative inline-block px-3 py-1 font-semibold  leading-tight
                     {{$qrcode->cteHarvest->cteAgent->manafactureQrcode->status == Config::get('constants.stock.available') ? 'text-green-900':''}}
-                    {{$qrcode->cteHarvest->cteAgent->manafactureQrcode->status == Config::get('constants.stock.not_available') ? 'text-red-900':''}}">
+                    {{$qrcode->cteHarvest->cteAgent->manafactureQrcode->status == Config::get('constants.delivery.rejected') ? 'text-red-900':''}}
+                    {{$qrcode->cteHarvest->cteAgent->manafactureQrcode->status == Config::get('constants.stock.not_available') ? 'bg-red-200':''}}">
                         <span aria-hidden="" class="absolute inset-0 opacity-50 rounded-full
                         {{$qrcode->cteHarvest->cteAgent->manafactureQrcode->status == Config::get('constants.stock.available') ? 'bg-green-200':''}}
-                        {{$qrcode->cteHarvest->cteAgent->manafactureQrcode->status == Config::get('constants.stock.not_available') ? 'bg-red-200':''}}"></span>
+                        {{$qrcode->cteHarvest->cteAgent->manafactureQrcode->status == Config::get('constants.delivery.rejected') ? 'bg-red-200':''}}
+                        {{$qrcode->cteHarvest->cteAgent->manafactureQrcode->status == Config::get('constants.stock.not_available') ? 'bg-red-200':''}}"
+                        ></span>
                         <span class="relative">{{$qrcode->cteHarvest->cteAgent->manafactureQrcode->status}}</span>
                     </span>
                     <label class="mb-0" for="">: الحالة</label>

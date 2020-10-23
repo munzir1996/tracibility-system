@@ -20,7 +20,7 @@ Route::prefix('/')->middleware('auth')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('operation/shipping', 'OperationController@shipping')->name('operation.shipping');
     Route::delete('operation/shipping/{cteshipping}', 'OperationController@deleteShipping')->name('operation.shipping.delete');
-    // Route::get('/selling/{ctereceiving}', 'HomeController@selling')->name('home.selling');
+
     Route::get('operation/receiving', 'OperationController@receiving')->name('operation.receiving');
     Route::get('operation/receiving/selling/{ctereceiving}', 'OperationController@selling')->name('operation.receiving.selling');
     Route::delete('operation/receiving/{ctereceiving}', 'OperationController@deleteReceiving')->name('operation.receiving.delete');
@@ -50,6 +50,7 @@ Route::prefix('/')->middleware('auth')->group(function () {
     Route::get('shipping/qrcode/reject/receive/{code}', 'ShippingQrcodeController@rejectReceive')->name('shipping.qrcodes.reject.receive');
 
     Route::resource('transports', 'TransportController');
+
     Route::resource('consumers', 'ConsumerController');
     Route::get('selling/qrcode/{code}', 'SellingQrcodeController@show')->name('selling.qrcodes.show');
     Route::put('selling/qrcode/{cteReceiving}/{code}', 'SellingQrcodeController@sell')->name('selling.qrcodes.sell');

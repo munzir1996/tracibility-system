@@ -12,13 +12,16 @@ class Organization extends Model
 
     public function scopePermissionType($query, $permission){
 
-        if ($permission == 'harvest') {
-            return $query->where('type', Config::get('constants.type.harvest'));
+        if ($permission == 'super-admin') {
+            return $query->where('type', Config::get('constants.type.admin'));
         }
-        if ($permission == 'manafacture') {
+        if ($permission == 'tread-mill') {
+            return $query->where('type', Config::get('constants.type.treadmill'));
+        }
+        if ($permission == 'agent') {
             return $query->where('type', Config::get('constants.type.agent'));
         }
-        if ($permission == 'receiving') {
+        if ($permission == 'bakery') {
             return $query->where('type', Config::get('constants.type.bakery'));
         }
         if ($permission == 'transporting') {

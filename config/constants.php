@@ -13,7 +13,7 @@ return [
     ],
 
     'type' => [
-        'harvest' => 'الحصاد',
+        // 'harvest' => 'الحصاد',
         'treadmill' => 'المطحنة',
         'agent' => 'الوكيل',
         'bakery' => 'المخبز',

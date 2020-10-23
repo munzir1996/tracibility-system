@@ -17,7 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::permission(['super-admin', 'tread-mill', 'agent', 'bakery'])->get();
 
         return view('users.index', [
             'users' => $users,
@@ -32,8 +32,7 @@ class UserController extends Controller
     public function create()
     {
         $permissions = Permission::all()->whereNotIn('name', array(
-            'super-admin',
-            'shipping',
+            // 'super-admin',
             'transporting',
             ))->pluck('name');
 
@@ -97,8 +96,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $permissions = Permission::all()->whereNotIn('name', array(
-            'super-admin',
-            'shipping',
+            // 'super-admin',
             'transporting',
             ))->pluck('name');
 

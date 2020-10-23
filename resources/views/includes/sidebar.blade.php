@@ -79,6 +79,7 @@
                 <span class="mx-3">المخابز</span>
                 {{-- <span class="mx-2 text-gray-300"></span> --}}
             </a>
+
         </div>
         {{-- Sub --}}
 

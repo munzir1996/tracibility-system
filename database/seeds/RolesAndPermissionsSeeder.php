@@ -14,11 +14,11 @@ class RolesAndPermissionsSeeder extends Seeder
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
         Permission::create(['name' => 'super-admin']);
-        Permission::create(['name' => 'harvest']);
-        Permission::create(['name' => 'manafacture']);
-        Permission::create(['name' => 'shipping']);
+        Permission::create(['name' => 'tread-mill']);
+        Permission::create(['name' => 'agent']);
+        Permission::create(['name' => 'bakery']);
         Permission::create(['name' => 'transporting']);
-        Permission::create(['name' => 'receiving']);
+        // Permission::create(['name' => 'receiving']);
 
         // $role = Role::create(['name' => 'super-admin']);
         // $role->givePermissionTo(Permission::all());

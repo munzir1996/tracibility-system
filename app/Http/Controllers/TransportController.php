@@ -61,7 +61,7 @@ class TransportController extends Controller
         $user->givePermissionTo('transporting');
         //suffix('.me') prefix
         Transport::create([
-            'giai' => Keygen::numeric(10)->suffix('-kh')->generate(true),
+            'giai' => Keygen::numeric(10)->suffix('-d')->generate(true),
             'user_id' => $user->id,
         ]);
 
