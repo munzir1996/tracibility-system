@@ -16,7 +16,7 @@ class CreateCteTransportsTable extends Migration
         Schema::create('cte_transports', function (Blueprint $table) {
             $table->id();
             $table->string('why');
-            $table->string('what_truck');
+            $table->string('what_truck')->nullable();
             $table->date('when');
             $table->foreignId('cte_shipping_id');
             $table->foreignId('user_id');

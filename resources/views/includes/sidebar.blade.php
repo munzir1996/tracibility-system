@@ -13,6 +13,7 @@
     </div>
 
     <nav class="mt-10">
+
         <a class="flex items-center mt-4 py-2 px-6 bg-opacity-25 text-decoration-none
         {{Request::is('/')? 'bg-gray-700  text-gray-100': 'hover:bg-gray-700  text-gray-500'}}" href="/">
             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -23,18 +24,13 @@
             <span class="mx-3">لوحة التحكم</span>
         </a>
 
+        @can('super-admin')
+
         <a class="flex items-center mt-4 py-2 px-6 bg-opacity-25 text-decoration-none
         {{Request::is('users*')? 'bg-gray-700  text-gray-100': 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100'}}" href="{{route('users.index')}}">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 11C10.2091 11 12 9.20914 12 7C12 4.79086 10.2091 3 8 3C5.79086 3 4 4.79086 4 7C4 9.20914 5.79086 11 8 11ZM8 9C9.10457 9 10 8.10457 10 7C10 5.89543 9.10457 5 8 5C6.89543 5 6 5.89543 6 7C6 8.10457 6.89543 9 8 9Z" fill="currentColor" /><path d="M11 14C11.5523 14 12 14.4477 12 15V21H14V15C14 13.3431 12.6569 12 11 12H5C3.34315 12 2 13.3431 2 15V21H4V15C4 14.4477 4.44772 14 5 14H11Z" fill="currentColor" /><path d="M18 7H20V9H22V11H20V13H18V11H16V9H18V7Z" fill="currentColor" /></svg>
 
             <span class="mx-3">المستخدمين</span>
-
-        </a>
-
-        <a class="flex items-center mt-4 py-2 px-6 bg-opacity-25 text-decoration-none
-        {{Request::is('consumers*')? 'bg-gray-700  text-gray-100': 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100'}}" href="{{route('consumers.index')}}">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.79166 2H1V4H4.2184L6.9872 16.6776H7V17H20V16.7519L22.1932 7.09095L22.5308 6H6.6552L6.08485 3.38852L5.79166 2ZM19.9869 8H7.092L8.62081 15H18.3978L19.9869 8Z" fill="currentColor" /><path d="M10 22C11.1046 22 12 21.1046 12 20C12 18.8954 11.1046 18 10 18C8.89543 18 8 18.8954 8 20C8 21.1046 8.89543 22 10 22Z" fill="currentColor" /><path d="M19 20C19 21.1046 18.1046 22 17 22C15.8954 22 15 21.1046 15 20C15 18.8954 15.8954 18 17 18C18.1046 18 19 18.8954 19 20Z" fill="currentColor" /></svg>
-            <span class="mx-3">المستهلكين</span>
 
         </a>
 
@@ -67,10 +63,6 @@
         </a>
         {{-- Sub --}}
         <div v-if="operationIsOpen">
-            {{-- <a href="{{route('imports.index')}}" class="flex items-center py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 text-decoration-none hover:text-gray-100">
-                <span class="mx-3">Import</span>
-                <span class="mx-2 text-gray-300"></span>
-            </a> --}}
             <a href="{{route('operation.shipping')}}" class="flex items-center py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 text-decoration-none hover:text-gray-100">
                 <span class="mx-3">الوكلاء</span>
                 {{-- <span class="mx-2 text-gray-300"></span> --}}
@@ -82,8 +74,9 @@
 
         </div>
         {{-- Sub --}}
+        @endcan
 
-
+        @canany(['super-admin', 'tread-mill'])
         <a class="flex items-center mt-4 py-2 px-6 hover:bg-opacity-25 text-decoration-none
         {{Request::is('cteharvests*')? 'bg-gray-700  text-gray-100': 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100'}}" href="{{route('cteharvests.index')}}">
             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -92,7 +85,9 @@
 
             <span class="mx-3">المطحنة</span>
         </a>
+        @endcanany
 
+        @canany(['super-admin', 'agent'])
         <a @click="agentToggle" class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 text-decoration-none hover:text-gray-100">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M17 7C17 5.34315 15.6569 4 14 4H10C8.34315 4 7 5.34315 7 7H6C4.34315 7 3 8.34315 3 10V18C3 19.6569 4.34315 21 6 21H18C19.6569 21 21 19.6569 21 18V10C21 8.34315 19.6569 7 18 7H17ZM14 6H10C9.44772 6 9 6.44772 9 7H15C15 6.44772 14.5523 6 14 6ZM6 9H18C18.5523 9 19 9.44772 19 10V18C19 18.5523 18.5523 19 18 19H6C5.44772 19 5 18.5523 5 18V10C5 9.44772 5.44772 9 6 9Z" fill="currentColor" /></svg>
 
@@ -116,10 +111,6 @@
         </a>
         {{-- Sub --}}
         <div v-if="agentIsOpen">
-            {{-- <a href="{{route('imports.index')}}" class="flex items-center py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 text-decoration-none hover:text-gray-100">
-                <span class="mx-3">Import</span>
-                <span class="mx-2 text-gray-300"></span>
-            </a> --}}
             <a href="{{route('cteagents.index')}}" class="flex items-center py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 text-decoration-none hover:text-gray-100">
                 <span class="mx-3">الوارد</span>
                 {{-- <span class="mx-2 text-gray-300"></span> --}}
@@ -134,7 +125,9 @@
             </a>
         </div>
         {{-- Sub --}}
+        @endcanany
 
+        @canany(['super-admin', 'bakery'])
         <a class="flex items-center mt-4 py-2 px-6 hover:bg-opacity-25 text-decoration-none
         {{Request::is('ctereceivings*')? 'bg-gray-700  text-gray-100': 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100'}}" href="{{route('ctereceivings.index')}}">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 6C5.34315 6 4 7.34315 4 9H20C20 7.34315 18.6569 6 17 6H7Z" fill="currentColor" /><path d="M7 18C5.34315 18 4 16.6569 4 15H20C20 16.6569 18.6569 18 17 18H7Z" fill="currentColor" /><path d="M3 11C2.44772 11 2 11.4477 2 12C2 12.5523 2.44772 13 3 13H21C21.5523 13 22 12.5523 22 12C22 11.4477 21.5523 11 21 11H3Z" fill="currentColor" /></svg>
@@ -142,6 +135,13 @@
             <span class="mx-3">المخبز</span>
         </a>
 
+        <a class="flex items-center mt-4 py-2 px-6 bg-opacity-25 text-decoration-none
+        {{Request::is('consumers*')? 'bg-gray-700  text-gray-100': 'text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100'}}" href="{{route('consumers.index')}}">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.79166 2H1V4H4.2184L6.9872 16.6776H7V17H20V16.7519L22.1932 7.09095L22.5308 6H6.6552L6.08485 3.38852L5.79166 2ZM19.9869 8H7.092L8.62081 15H18.3978L19.9869 8Z" fill="currentColor" /><path d="M10 22C11.1046 22 12 21.1046 12 20C12 18.8954 11.1046 18 10 18C8.89543 18 8 18.8954 8 20C8 21.1046 8.89543 22 10 22Z" fill="currentColor" /><path d="M19 20C19 21.1046 18.1046 22 17 22C15.8954 22 15 21.1046 15 20C15 18.8954 15.8954 18 17 18C18.1046 18 19 18.8954 19 20Z" fill="currentColor" /></svg>
+            <span class="mx-3">المستهلكين</span>
+
+        </a>
+        @endcanany
 
     </nav>
 </div>

@@ -94,7 +94,7 @@ class ShippingQrcodeController extends Controller
 
         CteTransport::create([
             'why' => Config::get('constants.status.transporting'),
-            'what_truck' => $transport->giai,
+            'what_truck' => ($transport != null) ? $transport->giai : null,
             'when' => Carbon::now(),
             'cte_shipping_id' => $shippingQrcode->cteShipping->id,
             'user_id' => auth()->id(),
@@ -120,7 +120,7 @@ class ShippingQrcodeController extends Controller
 
         CteTransport::create([
             'why' => Config::get('constants.status.transporting'),
-            'what_truck' => $transport->giai,
+            'what_truck' => ($transport != null) ? $transport->giai : null,
             'when' => Carbon::now(),
             'cte_shipping_id' => $shippingQrcode->cteShipping->id,
             'user_id' => auth()->id(),

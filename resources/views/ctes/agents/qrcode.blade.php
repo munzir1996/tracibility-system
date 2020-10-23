@@ -113,7 +113,11 @@
                 </div>
                 <div class="mb-3">
                     <p class="inline-flex">{!!$qrcode->cteAgent->cteHarvest->what->quantity!!} شوال</p>
-                    <label class="mb-0" for="">: الكمية</label>
+                    <label class="mb-0" for="">: الكمية المستلمة</label>
+                </div>
+                <div class="mb-3">
+                    <p class="inline-flex">{{$qrcode->cteAgent->amount}} شوال</p>
+                    <label class="mb-0" for="">: الكمية المتبقية</label>
                 </div>
                 <div class="mb-3">
                     <span class="relative inline-block px-3 py-1 font-semibold  leading-tight
@@ -132,6 +136,7 @@
 </div>
 {{-- Right Agent --}}
 
+{{-- @canany(['super-admin', 'agent']) --}}
 @if ($qrcode->status == Config::get('constants.stock.available'))
 {{-- Left Set Shipping --}}
 <div class="flex flex-row w-full">
@@ -179,6 +184,7 @@
 </div>
 {{-- Left Set Shipping --}}
 @endif
+{{-- @endcanany --}}
 
 
 </div>

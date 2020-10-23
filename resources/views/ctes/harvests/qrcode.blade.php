@@ -145,10 +145,7 @@
 {{-- Right Agent --}}
 
 
-
-
-
-
+{{-- @canany(['super-admin', 'tread-mill']) --}}
 {{-- Right Accept Harvest --}}
 @if ($qrcode->status == Config::get('constants.delivery.pending'))
 <div class="flex flex-row w-full">
@@ -182,6 +179,8 @@
     </div>
 </div>
 @endif
+{{-- @endcanany --}}
+
 {{-- Right Accept Harvest --}}
 
         </div>

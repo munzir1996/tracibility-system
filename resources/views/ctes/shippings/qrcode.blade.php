@@ -112,8 +112,13 @@
                 </div>
                 <div class="mb-3">
                     <p class="inline-flex">{!!$qrcode->cteShipping->cteAgent->what->quantity!!} شوال</p>
-                    <label class="mb-0" for="">: الكمية</label>
+                    <label class="mb-0" for="">: الكمية المستلمة</label>
                 </div>
+                <div class="mb-3">
+                    <p class="inline-flex">{{$qrcode->cteShipping->cteAgent->amount}} شوال</p>
+                    <label class="mb-0" for="">: الكمية المتبقية</label>
+                </div>
+
                 <div class="mb-3">
                     <span class="relative inline-block px-3 py-1 font-semibold  leading-tight
                     {{$qrcode->cteShipping->cteAgent->manafactureQrcode->status == Config::get('constants.stock.available') ? 'text-green-900':''}}
@@ -206,6 +211,7 @@
 </div>
 {{-- left col shipping --}}
 
+{{-- @canany(['super-admin', 'agent', 'transporting']) --}}
 @if ($qrcode->status == Config::get('constants.delivery.pending'))
 {{-- right col accept Transport --}}
 <div class="flex flex-row w-full">
@@ -242,6 +248,7 @@
 </div>
 {{-- right col accept Transport --}}
 @endif
+{{-- @endcanany --}}
 
 
 @if ($qrcode->status == Config::get('constants.delivery.transporting') || $qrcode->status == Config::get('constants.delivery.received') || $qrcode->status == Config::get('constants.delivery.rejected'))
@@ -319,8 +326,7 @@
 @endif
 
 
-
-
+{{-- @canany(['super-admin', 'transporting']) --}}
 @if ($qrcode->status == Config::get('constants.delivery.transporting'))
 {{-- left col Accept Transport --}}
 <div class="flex flex-row w-full">
@@ -362,6 +368,7 @@
 </div>
 {{-- left col Accept Transport --}}
 @endif
+{{-- @endcanany --}}
 
 
 @if ($qrcode->status == Config::get('constants.delivery.received') || $qrcode->status == Config::get('constants.delivery.rejected'))

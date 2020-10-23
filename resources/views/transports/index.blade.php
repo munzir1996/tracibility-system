@@ -3,9 +3,12 @@
 @section('body')
     <div class="flex justify-between">
     <h3 class="text-gray-700 text-3xl font-medium">السائقين</h3>
+    @can('super-admin')
+
         <a href="{{route('transports.create')}}" class="px-6 py-3 bg-green-600 rounded-md text-white font-medium tracking-wide text-decoration-none hover:bg-green-500 ml-3">
             أضافة سائق
         </a>
+    @endcan
     </div>
 
     <div class="mt-4">
@@ -69,6 +72,7 @@
                             </td>
 
                             <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
+                                @can('super-admin')
                                 <form action="{{route('transports.destroy', $transport->id)}}" method="post">
                                     @csrf {{ method_field('DELETE') }}
 
@@ -80,6 +84,7 @@
                                         حذف
                                     </button>
                                 </form>
+                                @endcan
                             </td>
                         </tr>
                         @endforeach
