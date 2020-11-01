@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserStoreRequest;
+use App\Http\Requests\UserUpdateRequest;
 use App\Organization;
 use App\User;
 use Illuminate\Http\Request;
@@ -48,17 +50,10 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserStoreRequest $request)
     {
 
-        $request->validate([
-            'name' => 'required',
-            'national_id' => 'required',
-            'phone' => 'required|min:10|max:10',
-            'password' => 'required|min:8|confirmed',
-            'permission' => 'required',
-            'organization_id' => 'required_unless:permission,super-admin',
-        ]);
+        $request->validated();
 
         $user = User::create([
             'name' => $request->name,
@@ -118,17 +113,10 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UserUpdateRequest $request, User $user)
     {
 
-        $request->validate([
-            'name' => 'required',
-            'national_id' => 'required',
-            'phone' => 'required|min:10|max:10',
-            'password' => 'sometimes|min:8|confirmed',
-            'permission' => 'required',
-            'organization_id' => 'required_unless:permission,super-admin',
-        ]);
+        $request->validated();
 
         $user->name = $request->name;
         $user->national_id = $request->national_id;
