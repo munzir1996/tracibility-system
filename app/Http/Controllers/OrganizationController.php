@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrganizationStoreRequest;
+use App\Http\Requests\OrganizationUpdateRequest;
 use App\Organization;
 use Illuminate\Http\Request;
 use Keygen\Keygen;
@@ -38,12 +40,9 @@ class OrganizationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OrganizationStoreRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'type' => 'required',
-        ]);
+        $request->validated();
 
         Organization::create([
             'gln' => Keygen::numeric(10)->generate(),
@@ -88,12 +87,9 @@ class OrganizationController extends Controller
      * @param  \App\Organization  $organization
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Organization $organization)
+    public function update(OrganizationUpdateRequest $request, Organization $organization)
     {
-        $request->validate([
-            'name' => 'required',
-            'type' => 'required',
-        ]);
+        $request->validated();
 
         $organization->update([
             'name' => $request->name,
