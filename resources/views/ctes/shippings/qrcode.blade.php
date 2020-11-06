@@ -8,7 +8,7 @@
 <!-- left col Harvest -->
 <div class="flex flex-row w-full">
 
-    <div class="w-2/5 px-2 py-10">
+    <div class="md:w-2/5 px-2 py-10">
         <div class="flex flex-col w-full rounded-lg shadow bg-white px-4 py-5">
             <div class="text-gray-600 mb-2 flex justify-between">
                 <div class="flex flex-row">
@@ -64,7 +64,7 @@
         </div>
     </div>
     <!--right column-->
-    <div class="w-2/5 px-2 py-10 ">
+    <div class="md:w-2/5 md:px-2 py-10 ">
 
     </div>
 </div>
@@ -74,7 +74,7 @@
 <div class="flex flex-row w-full">
     <!-- left col -->
 
-    <div class="w-2/5 px-2 py-10">
+    <div class="md:w-2/5 md:px-2 py-10">
 
     </div>
     <!--line column-->
@@ -86,7 +86,7 @@
         </div>
     </div>
     <!--right column-->
-    <div class="w-2/5 px-2 py-10 ">
+    <div class="md:w-2/5 px-2 py-10 ">
         <div class="flex flex-col w-full rounded-lg shadow bg-white px-4 py-5">
             <div class="text-gray-600 mb-2">
                 <div class="font-bold text-2xl text-right">
@@ -140,7 +140,7 @@
 <div class="flex flex-row w-full">
     <!-- left col -->
 
-    <div class="w-2/5 px-2 py-10">
+    <div class="md:w-2/5 px-2 py-10">
         <form action="{{route('cteagents.store',$qrcode->cteShipping->cteAgent->id)}}" method="POST">
             @csrf
             <div class="flex flex-col w-full rounded-lg shadow bg-white px-4 py-5">
@@ -205,7 +205,7 @@
         </div>
     </div>
     <!--right column-->
-    <div class="w-2/5 px-2 py-10 ">
+    <div class="md:w-2/5 md:px-2 py-10 ">
 
     </div>
 </div>
@@ -217,14 +217,14 @@
 <div class="flex flex-row w-full">
     <!-- left col -->
 
-    <div class="w-2/5 px-2 py-10">
+    <div class="md:w-2/5 md:px-2 py-10">
 
     </div>
     <!--line column-->
     <div class="w-1/5  flex justify-center">
     </div>
     <!--right column-->
-    <div class="w-2/5 px-2 py-10 ">
+    <div class="md:w-2/5 px-2 py-10 ">
         <div class="flex flex-col w-full rounded-lg shadow bg-white px-4 py-5">
             <div class="text-gray-600 mb-2">
                 <div class="font-bold text-2xl text-right">
@@ -258,7 +258,7 @@
 <div class="flex flex-row w-full">
     <!-- left col -->
 
-    <div class="w-2/5 px-2 py-10">
+    <div class="md:w-2/5 md:px-2 py-10">
 
     </div>
     <!--line column-->
@@ -270,7 +270,7 @@
         </div>
     </div>
     <!--right column-->
-    <div class="w-2/5 px-2 py-10 ">
+    <div class="md:w-2/5 px-2 py-10 ">
         <div class="flex flex-col w-full rounded-lg shadow bg-white px-4 py-5">
             <div class="text-gray-600 mb-2">
                 <div class="font-bold text-2xl text-right">
@@ -332,7 +332,7 @@
 <div class="flex flex-row w-full">
     <!-- left col -->
 
-    <div class="w-2/5 px-2 py-10">
+    <div class="md:w-2/5 px-2 py-10">
         <form action="{{route('cteagents.store',$qrcode->cteShipping->cteAgent->id)}}" method="POST">
             @csrf
             <div class="flex flex-col w-full rounded-lg shadow bg-white px-4 py-5">
@@ -362,7 +362,7 @@
     <div class="w-1/5  flex justify-center">
     </div>
     <!--right column-->
-    <div class="w-2/5 px-2 py-10 ">
+    <div class="md:w-2/5 md:px-2 py-10 ">
 
     </div>
 </div>
@@ -378,7 +378,7 @@
 <div class="flex flex-row w-full">
     <!-- left col -->
 
-    <div class="w-2/5 px-2 py-10">
+    <div class="md:w-2/5 px-2 py-10">
         <form action="{{route('cteagents.store',$qrcode->cteShipping->cteAgent->id)}}" method="POST">
             @csrf
             <div class="flex flex-col w-full rounded-lg shadow bg-white px-4 py-5">
@@ -451,7 +451,7 @@
         </div>
     </div>
     <!--right column-->
-    <div class="w-2/5 px-2 py-10 ">
+    <div class="md:w-2/5 md:px-2 py-10 ">
 
     </div>
 </div>

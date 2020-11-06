@@ -15,19 +15,19 @@ class OrganizationSeeder extends Seeder
     {
         factory(Organization::class)->create([
             'gln' => Keygen::numeric(10)->generate(),
-            'name' => 'مطحنة السلامة',
+            'name' => 'مطحنة الخرطوم',
             'type' => Config::get('constants.type.treadmill'),
         ]);
 
         factory(Organization::class)->create([
             'gln' => Keygen::numeric(10)->generate(),
-            'name' => 'وكيل بورتسودان',
+            'name' => 'وكيل الخرطوم',
             'type' => Config::get('constants.type.agent'),
         ]);
 
         factory(Organization::class)->create([
             'gln' => Keygen::numeric(10)->generate(),
-            'name' => 'مخبز بورتسودان',
+            'name' => 'مخبز الخرطوم',
             'type' => Config::get('constants.type.bakery'),
         ]);
 

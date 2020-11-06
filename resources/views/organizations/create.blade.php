@@ -35,8 +35,8 @@
                             <select class="form-select w-full mt-2 rounded-md focus:border-indigo-600"
                             name="type" required>
                                 <option></option>
-                                <option value="{{Config::get('constants.type.harvest')}}">
-                                    {{Config::get('constants.type.harvest')}}
+                                <option value="{{Config::get('constants.type.treadmill')}}">
+                                    {{Config::get('constants.type.treadmill')}}
                                 </option>
                                 <option value="{{Config::get('constants.type.agent')}}">
                                     {{Config::get('constants.type.agent')}}

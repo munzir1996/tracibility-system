@@ -26,7 +26,7 @@ class UserUpdateRequest extends FormRequest
         $user = $this->route('user');
         return [
             'name' => 'required',
-            'national_id' => "required|unique:users,national_id,{$user->id}",
+            'national_id' => "required|min:11|max:11|unique:users,national_id,{$user->id}",
             'phone' => 'required|min:10|max:10',
             'password' => 'sometimes|min:8|confirmed',
             'permission' => 'required',
@@ -45,9 +45,11 @@ class UserUpdateRequest extends FormRequest
             'name.required' => 'الأسم مطلوب',
             'national_id.required' => 'الرقم الوطني مطلوب',
             'national_id.unique' => 'الرقم الوطني مستخدم',
+            'national_id.min' => 'يجب أن يكون الرقم الوطني 11 أرقام',
+            'national_id.max' => 'يجب أن يكون الرقم الوطني 11 أرقام',
             'phone.required' => 'رقم الهاتف مطلوب',
-            'phone.min' => 'يجب أن يكون رقم الهاتف عشرة أرقام',
-            'phone.max' => 'يجب أن يكون رقم الهاتف عشرة أرقان',
+            'phone.min' => 'يجب أن يكون رقم الهاتف 10 أرقام',
+            'phone.max' => 'يجب أن يكون رقم الهاتف 10 أرقام',
             'password.min' => 'يجب أن لا تقل كلمة المرور عن 8 خانات',
             'password.confirmed' => 'كلمة المرور غير متطابقة',
             'permission.required' => 'الصلاحية مطلوبة',

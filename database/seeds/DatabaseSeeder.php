@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(RolesAndPermissionsSeeder::class);
         $this->call(OrganizationSeeder::class);
+        $this->call(ConsumerSeeder::class);
 
         $treadmill = Organization::find(1);
         $agent = Organization::find(2);

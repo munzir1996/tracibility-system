@@ -31,7 +31,7 @@ class CteHarvest extends Model
 
     public function getQrcodeAttribute()
     {
-        return QrCode::generate(route('harvest.qrcodes.show', $this->harvestQrcode->code));
+        return QrCode::generate(url("http://192.168.43.40:8000/harvest/qrcode/{$this->harvestQrcode->code}"));
 
     }
 

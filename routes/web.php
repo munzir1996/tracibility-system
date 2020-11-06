@@ -22,6 +22,10 @@ Route::get('manafacture/qrcode/{code}', 'ManafactureQrcodeController@show')->nam
 //Qrcode الشحن
 Route::get('shipping/qrcode/{code}', 'ShippingQrcodeController@show')->name('shipping.qrcodes.show');
 
+//Bakery Qrcode
+Route::get('organization/qrcode/{organization}', 'OrganizationQrcodeController@show')->name('organization.qrcode');
+Route::get('organization/qrcode/selling/{cteReceiving}', 'OrganizationQrcodeController@selling')->name('organization.qrcode.selling');
+
 Auth::routes();
 
 Route::prefix('/')->middleware('auth')->group(function () {
@@ -42,8 +46,6 @@ Route::prefix('/')->middleware('auth')->group(function () {
         //الجهات
         Route::get('get/organizations/{permission}', 'OrganizationController@getOrganization')->name('organization.get');
         Route::resource('organizations', 'OrganizationController');
-        Route::get('organization/qrcode/{organization}', 'OrganizationQrcodeController@show')->name('organization.qrcode');
-        Route::get('organization/qrcode/selling/{cteReceiving}', 'OrganizationQrcodeController@selling')->name('organization.qrcode.selling');
     });
 
     //المطحنة

@@ -32,7 +32,7 @@ class Organization extends Model
 
     public function getQrcodeAttribute()
     {
-        return QrCode::generate(route('organization.qrcode', $this->id));
+        return QrCode::generate(url("http://192.168.43.40:8000/organization/qrcode/{$this->id}"));
     }
 
     public function users()

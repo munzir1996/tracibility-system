@@ -9,7 +9,7 @@
             <div class="flex flex-row w-full">
     <!-- left col -->
 
-    <div class="w-2/5 px-2 py-10">
+    <div class="md:w-2/5 px-2 py-10">
         <div class="flex flex-col w-full rounded-lg shadow bg-white px-4 py-5">
             <div class="text-gray-600 mb-2 flex justify-between">
                 <div class="flex flex-row">
@@ -65,7 +65,7 @@
         </div>
     </div>
     <!--right column-->
-    <div class="w-2/5 px-2 py-10 ">
+    <div class="md:w-2/5 md:px-2 py-10 ">
 
     </div>
 </div>
@@ -75,7 +75,7 @@
 <div class="flex flex-row w-full">
     <!-- left col -->
 
-    <div class="w-2/5 px-2 py-10">
+    <div class="md:w-2/5 md:px-2 py-10">
 
     </div>
     <!--line column-->
@@ -87,7 +87,7 @@
         </div>
     </div>
     <!--right column-->
-    <div class="w-2/5 px-2 py-10 ">
+    <div class="md:w-2/5 px-2 py-10 ">
         <div class="flex flex-col w-full rounded-lg shadow bg-white px-4 py-5">
             <div class="text-gray-600 mb-2">
                 <div class="font-bold text-2xl text-right">
@@ -142,7 +142,7 @@
 <div class="flex flex-row w-full">
     <!-- left col -->
 
-    <div class="w-2/5 px-2 py-10">
+    <div class="md:w-2/5 px-2 py-10">
         <form action="{{route('manafacture.qrcodes.store',$qrcode->cteAgent->id)}}" method="POST">
             @csrf
             <div class="flex flex-col w-full rounded-lg shadow bg-white px-4 py-5">
@@ -160,7 +160,7 @@
                             الكمية
                             <span class="text-red-600">(شوال)</span>
                         </label>
-                        <input type="text" name="quantity" class="form-input w-full mt-2 rounded-md focus:border-indigo-600" required>
+                        <input type="number" name="quantity" class="form-input w-full mt-2 rounded-md focus:border-indigo-600" required>
                         @error('quantity')
                             <span class="block text-red-600 text-right">
                                 {{ $message }}
@@ -178,7 +178,7 @@
     <!--line column-->
 
     <!--right column-->
-    <div class="w-2/5 px-2 py-10 ">
+    <div class="md:w-2/5 md:px-2 py-10 ">
 
     </div>
 </div>

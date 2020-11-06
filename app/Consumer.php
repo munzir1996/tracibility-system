@@ -12,7 +12,7 @@ class Consumer extends Model
 
     public function getQrcodeAttribute()
     {
-        return QrCode::generate(route('selling.qrcodes.show', $this->code));
+        return QrCode::generate(url("http://192.168.43.40:8000/selling/qrcode/{$this->code}"));
     }
 
     public function cteSellings()

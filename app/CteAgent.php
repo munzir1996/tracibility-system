@@ -38,7 +38,7 @@ class CteAgent extends Model
 
     public function getQrcodeAttribute()
     {
-        return QrCode::generate(route('manafacture.qrcodes.show', $this->manafactureQrcode->code));
+        return QrCode::generate(url("http://192.168.43.40:8000/manafacture/qrcode/{$this->manafactureQrcode->code}"));
     }
 
     public function cteHarvest()

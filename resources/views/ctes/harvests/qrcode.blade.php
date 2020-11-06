@@ -9,7 +9,7 @@
             <div class="flex flex-row w-full">
     <!-- left col -->
 
-    <div class="w-2/5 px-2 py-10">
+    <div class="md:w-2/5 px-2 py-10">
         <form action="{{route('harvest.qrcodes.accept', $qrcode->id)}}" method="POST">
             @csrf
             {{method_field('PUT')}}
@@ -71,7 +71,7 @@
         </div>
     </div>
     <!--right column-->
-    <div class="w-2/5 px-2 py-10 ">
+    <div class="md:w-2/5 md:px-2 py-10 ">
 
     </div>
 </div>
@@ -82,7 +82,7 @@
 <div class="flex flex-row w-full">
     <!-- left col -->
 
-    <div class="w-2/5 px-2 py-10">
+    <div class="md:w-2/5 md:px-2 py-10">
 
     </div>
     <!--line column-->
@@ -95,7 +95,7 @@
         </div>
     </div>
     <!--right column-->
-    <div class="w-2/5 px-2 py-10 ">
+    <div class="md:w-2/5 px-2 py-10 ">
         <div class="flex flex-col w-full rounded-lg shadow bg-white px-4 py-5">
             <div class="text-gray-600 mb-2 flex justify-end">
                 <div class="font-bold text-2xl">
@@ -121,13 +121,17 @@
                 </div>
                 <div class="mb-3">
                     <p class="inline-flex">{!!$qrcode->cteHarvest->cteAgent->what->quantity!!} شوال</p>
-                    <label class="mb-0" for="">: الكمية</label>
+                    <label class="mb-0" for="">: الكمية المستلمة</label>
                 </div>
                 <div class="mb-3">
-                    <span class="relative inline-block px-3 py-1 font-semibold  leading-tight
+                    <p class="inline-flex">{{$qrcode->cteHarvest->cteAgent->amount}} شوال</p>
+                    <label class="mb-0" for="">: الكمية المتبقية</label>
+                </div>
+                <div class="mb-3">
+                    <span class="relative inline-block px-3 py-1 font-semibold  leading-tight rounded-full
                     {{$qrcode->cteHarvest->cteAgent->manafactureQrcode->status == Config::get('constants.stock.available') ? 'text-green-900':''}}
                     {{$qrcode->cteHarvest->cteAgent->manafactureQrcode->status == Config::get('constants.delivery.rejected') ? 'text-red-900':''}}
-                    {{$qrcode->cteHarvest->cteAgent->manafactureQrcode->status == Config::get('constants.stock.not_available') ? 'bg-red-200':''}}">
+                    {{$qrcode->cteHarvest->cteAgent->manafactureQrcode->status == Config::get('constants.stock.not_available') ? 'text-red-900':''}}">
                         <span aria-hidden="" class="absolute inset-0 opacity-50 rounded-full
                         {{$qrcode->cteHarvest->cteAgent->manafactureQrcode->status == Config::get('constants.stock.available') ? 'bg-green-200':''}}
                         {{$qrcode->cteHarvest->cteAgent->manafactureQrcode->status == Config::get('constants.delivery.rejected') ? 'bg-red-200':''}}
@@ -151,14 +155,14 @@
 <div class="flex flex-row w-full">
     <!-- left col -->
 
-    <div class="w-2/5 px-2 py-10">
+    <div class="md:w-2/5 md:px-2 py-10">
 
     </div>
     <!--line column-->
     <div class="w-1/5  flex justify-center">
     </div>
     <!--right column-->
-    <div class="w-2/5 px-2 py-10 ">
+    <div class="md:w-2/5 px-2 py-10 ">
         <form action="{{route('harvest.qrcodes.accept', $qrcode->id)}}" method="POST">
         @csrf
         {{method_field('PUT')}}

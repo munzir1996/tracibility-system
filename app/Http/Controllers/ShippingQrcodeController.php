@@ -128,7 +128,7 @@ class ShippingQrcodeController extends Controller
             'shipping_qrcode_id' => $shippingQrcode->id,
         ]);
 
-        session()->flash('success', 'تم الأضافة بنجاح');
+        session()->flash('success', 'تم الرفض بنجاح');
 
         return redirect()->route('shipping.qrcodes.show', $code);
 
@@ -183,20 +183,20 @@ class ShippingQrcodeController extends Controller
             'quantity' => $shippingQrcode->cteShipping->what->quantity,
             'produced' => 0,
             'consumed' => 0,
-            'status' => Config::get('constants.stock.not_available'),
+            'status' => Config::get('constants.delivery.rejected'),
         ];
 
         CteReceiving::create([
             'why' => Config::get('constants.status.receiving'),
             'what' => $what,
             'when' => Carbon::now(),
-            'cte_transport_id' => $transport->id,
+            'cte_transport_id' => $shippingQrcode->cteTransport->id,
             'user_id' => auth()->id(),
             'organization_id' => auth()->user()->organization_id,
             'shipping_qrcode_id' => $shippingQrcode->id,
         ]);
 
-        session()->flash('success', 'تم الأضافة بنجاح');
+        session()->flash('success', 'تم الرفض بنجاح');
 
         return redirect()->route('shipping.qrcodes.show', $code);
     }

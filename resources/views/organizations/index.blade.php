@@ -42,7 +42,7 @@
                             </td>
 
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                @if ($organization->type == Config::get('constants.type.bakery'))
+                                @if ($organization->type == Config::get('constants.type.bakery') || $organization->type == Config::get('constants.type.admin'))
                                     <a href="{{route('organization.qrcode', $organization->id)}}">
                                         {{$organization->qrcode}}
                                     </a>

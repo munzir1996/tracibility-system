@@ -25,7 +25,7 @@ class CteReceiving extends Model
 
     public function getQrcodeAttribute()
     {
-        return QrCode::generate(route('shipping.qrcodes.show', $this->shippingQrcode->code));
+        return QrCode::generate(url("http://192.168.43.40:8000/shipping/qrcode/{$this->shippingQrcode->code}"));
     }
 
     public function user()

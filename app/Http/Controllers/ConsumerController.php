@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Consumer;
+use App\Http\Requests\ConsumerStoreRequest;
+use App\Http\Requests\ConsumerUpdateRequest;
 use Illuminate\Http\Request;
 
 class ConsumerController extends Controller
@@ -37,12 +39,9 @@ class ConsumerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ConsumerStoreRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'national_id' => 'required',
-        ]);
+        $request->validated();
 
         Consumer::create([
             'name' => $request->name,
@@ -89,12 +88,9 @@ class ConsumerController extends Controller
      * @param  \App\Consumer  $consumer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Consumer $consumer)
+    public function update(ConsumerUpdateRequest $request, Consumer $consumer)
     {
-        $request->validate([
-            'name' => 'required',
-            'national_id' => 'required',
-        ]);
+        $request->validated();
 
         $consumer->update([
             'name' => $request->name,

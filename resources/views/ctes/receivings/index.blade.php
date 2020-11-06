@@ -99,10 +99,12 @@
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
                                 <span class="relative inline-block px-3 py-1 font-semibold  leading-tight
                                 {{$ctereceiving->what->status == Config::get('constants.stock.available') ? 'text-green-900':''}}
-                                {{$ctereceiving->what->status == Config::get('constants.stock.not_available') ? 'text-red-900':''}}">
+                                {{$ctereceiving->what->status == Config::get('constants.stock.not_available') ? 'text-red-900':''}}
+                                {{$ctereceiving->what->status == Config::get('constants.delivery.rejected') ? 'text-red-900':''}}">
                                     <span aria-hidden="" class="absolute inset-0 opacity-50 rounded-full
                                     {{$ctereceiving->what->status == Config::get('constants.stock.available') ? 'bg-green-200':''}}
-                                    {{$ctereceiving->what->status == Config::get('constants.stock.not_available') ? 'bg-red-200':''}}"></span>
+                                    {{$ctereceiving->what->status == Config::get('constants.stock.not_available') ? 'bg-red-200':''}}
+                                    {{$ctereceiving->what->status == Config::get('constants.delivery.rejected') ? 'bg-red-200':''}}"></span>
                                     <span class="relative">{{$ctereceiving->what->status}}</span>
                                 </span>
                             </td>

@@ -55,7 +55,7 @@
                                 <span class="text-red-600">(شوال)*</span>
                             </label>
                             <input class="form-input w-full mt-2 rounded-md focus:border-indigo-600"
-                            type="text" name="quantity" required>
+                            type="number" name="quantity" required>
                             @error('quantity')
                             <span class="block text-red-600">
                                 {{ $message }}

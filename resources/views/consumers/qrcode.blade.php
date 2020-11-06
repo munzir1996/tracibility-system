@@ -9,7 +9,7 @@
             <div class="flex flex-row w-full">
     <!-- left col -->
     @if (!empty($ctereceiving))
-    <div class="w-2/5 px-2 py-10">
+    <div class="md:w-2/5 px-2 py-10">
         <div class="flex flex-col w-full rounded-lg shadow bg-white px-4 py-5">
             <div class="text-gray-600 mb-2 flex justify-between">
                 <div class="flex flex-row">
@@ -72,7 +72,7 @@
         </div>
     </div>
     <!--right column-->
-    <div class="w-2/5 px-2 py-10 ">
+    <div class="md:w-2/5 md:px-2 py-10 ">
 
     </div>
 </div>
@@ -84,14 +84,14 @@
 <div class="flex flex-row w-full">
     <!-- left col -->
 
-    <div class="w-2/5 px-2 py-10">
+    <div class="md:w-2/5 md:px-2 py-10">
 
     </div>
     <!--line column-->
     <div class="w-1/5  flex justify-center">
     </div>
     <!--right column-->
-    <div class="w-2/5 px-2 py-10 ">
+    <div class="md:w-2/5 px-2 py-10 ">
         <form action="{{route('selling.qrcodes.sell', [$ctereceiving->id, $consumer->code])}}" method="POST">
         @csrf
         {{method_field('PUT')}}
@@ -129,7 +129,7 @@
 
 @else
 
-<div class="w-2/5 px-2 py-10">
+<div class="md:w-2/5 px-2 py-10">
     <div class="flex flex-col w-full rounded-lg shadow bg-white px-4 py-5">
         <div class="text-gray-600 mb-2 flex justify-between">
             <div class="flex flex-row justify-around">
